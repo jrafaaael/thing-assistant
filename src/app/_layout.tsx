@@ -20,7 +20,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    "Inter-Regular": require('../../assets/fonts/Inter-Regular.ttf'),
     ...FontAwesome.font,
   });
 
