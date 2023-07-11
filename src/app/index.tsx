@@ -5,5 +5,5 @@ export default function Home() {
     <View>
       <Text>alv</Text>
     </View>
-  )
+  );
 }
