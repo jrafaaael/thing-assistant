@@ -38,7 +38,7 @@ export default function Home() {
 
     const { data, error } = await supabase.storage
       .from("pdf")
-      .upload("test.pdf", body);
+      .upload(fileBlob.name, body);
 
     console.log({ data, error });
   };
