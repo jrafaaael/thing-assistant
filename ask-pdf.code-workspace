@@ -5,6 +5,10 @@
       "path": "./"
     },
     {
+      "name": "react-native-app",
+      "path": "mobile"
+    },
+    {
       "name": "supabase-functions",
       "path": "supabase/functions"
     }
