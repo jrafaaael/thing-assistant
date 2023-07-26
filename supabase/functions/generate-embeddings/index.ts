@@ -3,11 +3,16 @@
 // This enables autocomplete, go to definition, etc.
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { llm } from "../_lib/langchain.ts";
 
-serve(async (req) => {
-  const { name } = await req.json();
+serve(async (_req) => {
+  // const { name } = await req.json();
+  const result = await llm.predict(
+    "What would be a good company name for a company that makes colorful socks?"
+  );
+
   const data = {
-    message: `Hello ${name}!`,
+    result,
   };
 
   return new Response(JSON.stringify(data), {
