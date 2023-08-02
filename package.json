@@ -1,5 +1,5 @@
 {
-  "name": "ask-pdf",
+  "name": "file-assistant-mobile",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
