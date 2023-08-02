@@ -3,7 +3,6 @@ import { Pressable, StyleSheet, View } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
 
 import { Text } from "@/components/text";
-import { supabase } from "@/lib/supabase";
 
 export default function Home() {
   const [file, setFile] = useState<DocumentPicker.DocumentPickerResult | null>(
@@ -22,7 +21,7 @@ export default function Home() {
     setFile(result);
   };
 
-  const handleUploadFile = async () => {
+  const handleUploadFile = () => {
     if (!file) {
       return;
     }
@@ -35,12 +34,6 @@ export default function Home() {
     const body = new FormData();
 
     body.append("file", fileBlob);
-
-    const { data, error } = await supabase.storage
-      .from("pdf")
-      .upload(fileBlob.name, body);
-
-    console.log({ data, error });
   };
 
   return (
