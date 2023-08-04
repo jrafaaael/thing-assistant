@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   postgres:
-    image: postgres:15.3-alpine3.18
+    image: ankane/pgvector:v0.4.4
     ports:
       - '5432:5432'
     environment:
