@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { EmbeddingsModule } from './embeddings/embeddings.module';
 
 @Module({
-  imports: [],
+  imports: [EmbeddingsModule],
 })
 export class AppModule {}
