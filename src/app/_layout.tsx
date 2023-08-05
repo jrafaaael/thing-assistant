@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { Slot, SplashScreen } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import { useFonts } from "expo-font";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-import { COLORS, SPACING } from "@/styles";
+import { COLORS } from "@/styles";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -36,16 +35,22 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView style={styles.layout}>
-      <Slot />
-    </SafeAreaView>
+    <Stack
+      screenOptions={{
+        headerStyle: styles.header,
+        headerTintColor: COLORS.neutral[50],
+        headerShadowVisible: false,
+        contentStyle: styles.content,
+      }}
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  layout: {
-    paddingHorizontal: SPACING.base,
+  header: {
+    backgroundColor: COLORS.neutral[900],
+  },
+  content: {
     backgroundColor: COLORS.neutral[950],
-    flex: 1,
   },
 });
