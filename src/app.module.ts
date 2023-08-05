@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { EmbeddingsModule } from './embeddings/embeddings.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), EmbeddingsModule],
+  imports: [ConfigModule.forRoot(), ChatModule],
 })
 export class AppModule {}
