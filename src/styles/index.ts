@@ -1,6 +1,7 @@
 export const COLORS = {
   neutral: {
     50: "#fafafa",
+    900: "#171717",
     950: "#0a0a0a",
   },
 };
