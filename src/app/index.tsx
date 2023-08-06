@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { Stack } from "expo-router";
 import * as DocumentPicker from "expo-document-picker";
@@ -6,11 +5,9 @@ import * as DocumentPicker from "expo-document-picker";
 import { Text } from "@/components/text";
 import { Plus } from "@/components/icons/plus";
 
-export default function Home() {
-  const [file, setFile] = useState<DocumentPicker.DocumentPickerResult | null>(
-    null
-  );
+import { COLORS, ICON_SIZE, SPACING } from "@/styles";
 
+export default function Home() {
   const handlePickFile = async () => {
     const result = await DocumentPicker.getDocumentAsync({
       type: "application/pdf",
@@ -20,22 +17,25 @@ export default function Home() {
       return;
     }
 
-    setFile(result);
-  };
-
-  const handleUploadFile = () => {
-    if (!file) {
-      return;
-    }
-
     const fileBlob = {
-      uri: file.assets?.[0].uri,
-      name: file.assets?.[0].name,
-      type: file.assets?.[0].mimeType,
+      uri: result.assets?.[0].uri,
+      name: result.assets?.[0].name,
+      type: result.assets?.[0].mimeType,
     } as unknown as Blob;
-    const body = new FormData();
 
+    const body = new FormData();
     body.append("file", fileBlob);
+
+    const res = await fetch(
+      `${process.env.EXPO_PUBLIC_API_URL}/chat/upload-resource`,
+      {
+        method: "POST",
+        body: body,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
   };
 
   return (
@@ -64,7 +64,15 @@ export default function Home() {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+  },
+  upload: {
+    width: SPACING.lg,
+    height: ICON_SIZE.sm,
     justifyContent: "center",
     alignItems: "center",
+  },
+  uploadIconWrapper: {
+    width: ICON_SIZE.sm,
+    height: ICON_SIZE.sm,
   },
 });
