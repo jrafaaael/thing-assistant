@@ -4,6 +4,9 @@ export const COLORS = {
     900: "#171717",
     950: "#0a0a0a",
   },
+  blue: {
+    ios: "#0a84ff",
+  },
 };
 
 export const FONT_SIZE = {
