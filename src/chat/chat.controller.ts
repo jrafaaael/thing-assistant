@@ -65,4 +65,21 @@ export class ChatController {
     console.timeEnd('upload');
     return { msg: 'ok' };
   }
+
+  @Get('ask')
+  async ask() {
+    const vectorStore = PrismaVectorStore.withModel<PrismaDocument>(
+      this.prismaService,
+    ).create(new CohereEmbeddings({ apiKey: process.env.COHERE_API_KEY }), {
+      prisma: Prisma,
+      tableName: 'Document',
+      vectorColumnName: 'vector',
+      columns: {
+        id: PrismaVectorStore.IdColumn,
+        content: PrismaVectorStore.ContentColumn,
+      },
+    });
+    const resultOne = await vectorStore.similaritySearch('Who is the author of this cv?', 1);
+    console.log(resultOne);
+  }
 }
