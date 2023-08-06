@@ -27,3 +27,8 @@ export const SPACING = {
   lg: 26,
   xl: 30,
 };
+
+export const ICON_SIZE = {
+  sm: 20,
+  base: 24,
+}
