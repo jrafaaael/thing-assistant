@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
+import { Stack } from "expo-router";
 import * as DocumentPicker from "expo-document-picker";
 
 import { Text } from "@/components/text";
+import { Plus } from "@/components/icons/plus";
 
 export default function Home() {
   const [file, setFile] = useState<DocumentPicker.DocumentPickerResult | null>(
@@ -38,12 +40,23 @@ export default function Home() {
 
   return (
     <View style={styles.wrapper}>
-      <Pressable onPressIn={handlePickFile}>
-        <Text>Pick file</Text>
-      </Pressable>
-      <Pressable onPressIn={handleUploadFile}>
-        <Text>Upload file</Text>
-      </Pressable>
+      <Stack.Screen
+        options={{
+          title: "Chats",
+          headerTitleStyle: {
+            fontFamily: "Inter-Bold",
+          },
+          headerTitleAlign: "center",
+          headerRight: () => (
+            <Pressable style={styles.upload} onPressIn={handlePickFile}>
+              <View style={styles.uploadIconWrapper}>
+                <Plus stroke={COLORS.blue.ios} />
+              </View>
+            </Pressable>
+          ),
+        }}
+      />
+      <Text>dlskfj</Text>
     </View>
   );
 }
