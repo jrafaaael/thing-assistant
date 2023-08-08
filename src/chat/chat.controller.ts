@@ -9,11 +9,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf';
 import { Document } from 'langchain/document';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
-import { PrismaVectorStore } from 'langchain/vectorstores/prisma';
-import { CohereEmbeddings } from 'langchain/embeddings/cohere';
-import { Prisma, Document as PrismaDocument } from '@prisma/client';
 
-import { PrismaService } from 'src/common/prisma.service';
+import { VectorStoreService } from 'src/common/vector-store.service';
 
 const splitter = new RecursiveCharacterTextSplitter({
   chunkSize: 1024,
@@ -22,7 +19,7 @@ const splitter = new RecursiveCharacterTextSplitter({
 
 @Controller('chat')
 export class ChatController {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private vectorStoreService: VectorStoreService) {}
 
   @Post('upload-resource')
   @UseInterceptors(FileInterceptor('file'))
@@ -40,27 +37,7 @@ export class ChatController {
       ),
     );
 
-    const vectorStore = PrismaVectorStore.withModel<PrismaDocument>(
-      this.prismaService,
-    ).create(new CohereEmbeddings({ apiKey: process.env.COHERE_API_KEY }), {
-      prisma: Prisma,
-      tableName: 'Document',
-      vectorColumnName: 'vector',
-      columns: {
-        id: PrismaVectorStore.IdColumn,
-        content: PrismaVectorStore.ContentColumn,
-      },
-    });
-
-    await vectorStore.addModels(
-      await this.prismaService.$transaction(
-        content.flat().map((content) =>
-          this.prismaService.document.create({
-            data: { content: content.pageContent },
-          }),
-        ),
-      ),
-    );
+    this.vectorStoreService.ingest(content);
 
     console.timeEnd('upload');
     return { msg: 'ok' };
@@ -68,18 +45,7 @@ export class ChatController {
 
   @Get('ask')
   async ask() {
-    const vectorStore = PrismaVectorStore.withModel<PrismaDocument>(
-      this.prismaService,
-    ).create(new CohereEmbeddings({ apiKey: process.env.COHERE_API_KEY }), {
-      prisma: Prisma,
-      tableName: 'Document',
-      vectorColumnName: 'vector',
-      columns: {
-        id: PrismaVectorStore.IdColumn,
-        content: PrismaVectorStore.ContentColumn,
-      },
-    });
-    const resultOne = await vectorStore.similaritySearch('Who is the author of this cv?', 1);
-    console.log(resultOne);
+    const res = await this.vectorStoreService.generateResponse();
+    console.log(res);
   }
 }
