@@ -10,6 +10,7 @@ import { COLORS, ICON_SIZE, SPACING } from "@/styles";
 export default function Home() {
   const handlePickFile = async () => {
     const result = await DocumentPicker.getDocumentAsync({
+      copyToCacheDirectory: false,
       type: "application/pdf",
     });
 
