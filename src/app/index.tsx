@@ -27,16 +27,13 @@ export default function Home() {
     const body = new FormData();
     body.append("file", fileBlob);
 
-    const res = await fetch(
-      `${process.env.EXPO_PUBLIC_API_URL}/chat/upload-resource`,
-      {
-        method: "POST",
-        body: body,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const res = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/chat/ingest`, {
+      method: "POST",
+      body: body,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   };
 
   return (
