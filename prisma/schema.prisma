@@ -10,8 +10,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Document {
+model Embedding {
   id      String                 @id @default(cuid())
   content String
   vector  Unsupported("vector")?
+
+  document   Document @relation(fields: [documentId], references: [id])
+  documentId String
+}
+
+model Document {
+  id         String   @id @default(cuid())
+  name       String?
+  created_at DateTime @default(now())
+
+  embeddings Embedding[]
+
+  room   Room?   @relation(fields: [roomId], references: [id])
+  roomId String?
+}
+
+model Room {
+  id         String   @id @default(cuid())
+  name       String
+  created_at DateTime @default(now())
+
+  documents Document[]
+  messages  Message[]
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  content    String
+  created_at DateTime @default(now())
+
+  room   Room   @relation(fields: [roomId], references: [id])
+  roomId String
 }
