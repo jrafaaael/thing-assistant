@@ -21,9 +21,9 @@ const splitter = new RecursiveCharacterTextSplitter({
 export class ChatController {
   constructor(private vectorStoreService: VectorStoreService) {}
 
-  @Post('upload-resource')
+  @Post('ingest')
   @UseInterceptors(FileInterceptor('file'))
-  async upload(@UploadedFile() file: Express.Multer.File) {
+  async ingest(@UploadedFile() file: Express.Multer.File) {
     console.time('upload');
     const blob = new Blob([file.buffer]);
     const loader = new PDFLoader(blob);
