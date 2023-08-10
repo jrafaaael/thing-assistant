@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, Document as DocumentModel } from '@prisma/client';
+import { Prisma, Embedding } from '@prisma/client';
 import { PrismaVectorStore } from 'langchain/vectorstores/prisma';
 import { CohereEmbeddings } from 'langchain/embeddings/cohere';
 import { Document } from 'langchain/document';
@@ -12,11 +12,11 @@ export class VectorStoreService {
 
   // TODO: improve this code
   constructor(private prismaService: PrismaService) {
-    this.vectorStore = PrismaVectorStore.withModel<DocumentModel>(
+    this.vectorStore = PrismaVectorStore.withModel<Embedding>(
       this.prismaService,
     ).create(new CohereEmbeddings({ apiKey: process.env.COHERE_API_KEY }), {
       prisma: Prisma,
-      tableName: 'Document',
+      tableName: 'Embedding',
       vectorColumnName: 'vector',
       columns: {
         id: PrismaVectorStore.IdColumn,
@@ -25,12 +25,15 @@ export class VectorStoreService {
     });
   }
 
-  async ingest(content: Document<Record<string, any>>[][]) {
+  async generateEmbeddings(
+    content: Document<Record<string, any>>[][],
+    documentId: string,
+  ) {
     await this.vectorStore.addModels(
       await this.prismaService.$transaction(
         content.flat().map((content) =>
-          this.prismaService.document.create({
-            data: { content: content.pageContent },
+          this.prismaService.embedding.create({
+            data: { content: content.pageContent, documentId },
           }),
         ),
       ),
