@@ -4,7 +4,7 @@ import * as DocumentPicker from "expo-document-picker";
 
 import { Text } from "@/components/text";
 import { Plus } from "@/components/icons/plus";
-
+import { axios } from "@/lib/axios";
 import { COLORS, ICON_SIZE, SPACING } from "@/styles";
 
 export default function Home() {
@@ -27,9 +27,7 @@ export default function Home() {
     const body = new FormData();
     body.append("file", fileBlob);
 
-    const res = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/chat/ingest`, {
-      method: "POST",
-      body: body,
+    const res = await axios.post(`/chat/ingest`, body, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
