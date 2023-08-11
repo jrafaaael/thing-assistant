@@ -1,10 +1,11 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { Stack } from "expo-router";
 import * as DocumentPicker from "expo-document-picker";
 
-import { Plus } from "@/components/icons/plus";
-import { COLORS, ICON_SIZE, SPACING } from "@/styles";
 import { useCreateChat } from "../../hooks/use-create-chat";
+import { Plus } from "@/components/icons/plus";
+import { COLORS } from "@/styles";
+import { styles } from "./styles";
 
 export function Header() {
   const { mutate } = useCreateChat();
@@ -46,15 +47,3 @@ export function Header() {
   );
 }
 
-const styles = StyleSheet.create({
-  upload: {
-    width: SPACING.lg,
-    height: ICON_SIZE.sm,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  uploadIconWrapper: {
-    width: ICON_SIZE.sm,
-    height: ICON_SIZE.sm,
-  },
-});
