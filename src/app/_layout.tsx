@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { SplashScreen, Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { COLORS } from "@/styles";
 
@@ -12,6 +13,8 @@ export {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+const queryClient = new QueryClient()
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -35,14 +38,16 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: styles.header,
-        headerTintColor: COLORS.neutral[50],
-        headerShadowVisible: false,
-        contentStyle: styles.content,
-      }}
-    />
+    <QueryClientProvider client={queryClient}>
+      <Stack
+        screenOptions={{
+          headerStyle: styles.header,
+          headerTintColor: COLORS.neutral[50],
+          headerShadowVisible: false,
+          contentStyle: styles.content,
+        }}
+      />
+    </QueryClientProvider>
   );
 }
 
