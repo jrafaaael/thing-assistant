@@ -2,7 +2,7 @@ import { Pressable, View } from "react-native";
 
 import { Input } from "@/components/input";
 import { Send } from "@/components/icons/send";
-import { styles } from "./style";
+import { styles } from "./styles";
 import { COLORS } from "@/styles";
 
 export function MessageComposer() {
