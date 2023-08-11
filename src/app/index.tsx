@@ -3,11 +3,13 @@ import { Stack } from "expo-router";
 import * as DocumentPicker from "expo-document-picker";
 
 import { ChatList } from "@/screens/home/components/chat-list";
+import { useCreateChat } from "@/screens/home/hooks/use-create-chat";
 import { Plus } from "@/components/icons/plus";
-import { axios } from "@/lib/axios";
 import { COLORS, ICON_SIZE, SPACING } from "@/styles";
 
 export default function Home() {
+  const { mutate } = useCreateChat();
+
   const handlePickFile = async () => {
     const result = await DocumentPicker.getDocumentAsync({
       copyToCacheDirectory: false,
@@ -18,19 +20,10 @@ export default function Home() {
       return;
     }
 
-    const fileBlob = {
+    mutate({
       uri: result.assets?.[0].uri,
       name: result.assets?.[0].name,
-      type: result.assets?.[0].mimeType,
-    } as unknown as Blob;
-
-    const body = new FormData();
-    body.append("file", fileBlob);
-
-    const res = await axios.post(`/chat/ingest`, body, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      type: result.assets?.[0].mimeType!,
     });
   };
 
