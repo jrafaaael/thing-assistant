@@ -1,14 +1,21 @@
+import { Link } from "expo-router";
+
 import { Text } from "@/components/text";
-import { View } from "react-native";
 
 interface Props {
   name: string;
+  id: string;
 }
 
-export function Chat({ name }: Props) {
+export function Chat({ name, id }: Props) {
   return (
-    <View>
+    <Link
+      href={{
+        pathname: "/chat/[id]",
+        params: { id, name },
+      }}
+    >
       <Text>{name}</Text>
-    </View>
+    </Link>
   );
 }

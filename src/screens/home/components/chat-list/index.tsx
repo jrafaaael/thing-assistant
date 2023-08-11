@@ -9,7 +9,7 @@ export function ChatList() {
   return (
     <FlatList
       data={data}
-      renderItem={({ item: { name } }) => <Chat name={name} />}
+      renderItem={({ item: { name, id } }) => <Chat name={name} id={id} />}
       keyExtractor={({ id }) => id}
     />
   );
