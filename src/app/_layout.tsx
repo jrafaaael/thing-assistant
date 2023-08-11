@@ -45,6 +45,9 @@ export default function RootLayout() {
           headerTintColor: COLORS.neutral[50],
           headerShadowVisible: false,
           contentStyle: styles.content,
+          animation: "slide_from_right",
+          // This doesn't work. Maybe is needed to create an issue on expo-router repo
+          animationDuration: 200
         }}
       />
     </QueryClientProvider>
