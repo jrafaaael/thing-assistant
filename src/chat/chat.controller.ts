@@ -17,6 +17,11 @@ export class ChatController {
     private vectorStoreService: VectorStoreService,
   ) {}
 
+  @Get()
+  async getAll() {
+    return await this.chatService.getAll();
+  }
+
   @Post('ingest')
   @UseInterceptors(FileInterceptor('file'))
   async ingest(@UploadedFile() file: Express.Multer.File) {

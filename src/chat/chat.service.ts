@@ -19,6 +19,10 @@ export class ChatService {
     private vectorStoreService: VectorStoreService,
   ) {}
 
+  async getAll() {
+    return await this.prismaService.room.findMany();
+  }
+
   async createRoom(data: Prisma.RoomCreateInput) {
     const room = await this.prismaService.room.create({
       data,
