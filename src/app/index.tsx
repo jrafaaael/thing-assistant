@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, View } from "react-native";
 import { Stack } from "expo-router";
 import * as DocumentPicker from "expo-document-picker";
 
-import { Text } from "@/components/text";
+import { ChatList } from "@/screens/home/components/chat-list";
 import { Plus } from "@/components/icons/plus";
 import { axios } from "@/lib/axios";
 import { COLORS, ICON_SIZE, SPACING } from "@/styles";
@@ -52,7 +52,7 @@ export default function Home() {
           ),
         }}
       />
-      <Text>dlskfj</Text>
+      <ChatList />
     </View>
   );
 }
@@ -60,6 +60,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    paddingHorizontal: SPACING.base,
   },
   upload: {
     width: SPACING.lg,
