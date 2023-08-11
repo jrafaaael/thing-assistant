@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
   },
   inputWrapper: {
     flex: 1,
+    maxHeight: 110,
   },
   send: {
     padding: 10,

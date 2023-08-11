@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACING.sm,
     paddingVertical: SPACING.xxs,
     backgroundColor: COLORS.neutral[900],
-    borderRadius: 100,
+    borderRadius: 20,
     color: COLORS.neutral[50],
     fontSize: FONT_SIZE.base,
     fontFamily: "Inter-Regular",

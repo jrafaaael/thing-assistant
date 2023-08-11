@@ -9,7 +9,7 @@ export function MessageComposer() {
   return (
     <View style={styles.wrapper}>
       <View style={styles.inputWrapper}>
-        <Input placeholder="Message" />
+        <Input multiline placeholder="Message" />
       </View>
       <Pressable style={styles.send}>
         <View style={styles.sendIconWrapper}>
