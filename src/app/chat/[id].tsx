@@ -13,7 +13,7 @@ export default function ChatScreen() {
     <View style={styles.wrapper}>
       <Header chatName={name} />
       <Text>id: {id}</Text>
-      <MessageComposer />
+      <MessageComposer id={id} />
     </View>
   );
 }
