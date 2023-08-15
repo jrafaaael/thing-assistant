@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     maxHeight: 114,
   },
   send: {
+    marginTop: 'auto',
     padding: 10,
     paddingRight: 0,
   },
