@@ -1,5 +1,5 @@
-import { ICON_SIZE, SPACING } from "@/styles";
 import { StyleSheet } from "react-native";
+import { ICON_SIZE, SPACING } from "@/styles";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -11,7 +11,9 @@ export const styles = StyleSheet.create({
   },
   inputWrapper: {
     flex: 1,
-    maxHeight: 110,
+  },
+  input: {
+    maxHeight: 114,
   },
   send: {
     padding: 10,
