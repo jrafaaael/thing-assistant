@@ -6,16 +6,11 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-
-import { VectorStoreService } from 'src/common/vector-store.service';
 import { ChatService } from './chat.service';
 
 @Controller('chat')
 export class ChatController {
-  constructor(
-    private chatService: ChatService,
-    private vectorStoreService: VectorStoreService,
-  ) {}
+  constructor(private chatService: ChatService) {}
 
   @Get()
   async getAll() {
@@ -31,11 +26,5 @@ export class ChatController {
 
     console.timeEnd('upload');
     return { msg: 'ok' };
-  }
-
-  @Get('ask')
-  async ask() {
-    const res = await this.vectorStoreService.generateResponse();
-    console.log(res);
   }
 }

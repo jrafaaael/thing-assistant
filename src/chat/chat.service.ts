@@ -31,6 +31,15 @@ export class ChatService {
     return room;
   }
 
+  // Why this needs `...UncheckedCreateInput`? Idk, I hate Prisma lol
+  async storeMessage(data: Prisma.MessageUncheckedCreateInput) {
+    const message = await this.prismaService.message.create({
+      data,
+    });
+
+    return message;
+  }
+
   async generateEmbeddings(file: Express.Multer.File, roomId: string) {
     const document = await this.prismaService.document.create({
       data: {
