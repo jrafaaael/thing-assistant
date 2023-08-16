@@ -2,8 +2,8 @@ import { StyleSheet, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 
 import { Header } from "@/screens/chat/components/header";
+import { MessageList } from "@/screens/chat/components/message-list";
 import { MessageComposer } from "@/screens/chat/components/message-composer";
-import { Text } from "@/components/text";
 import { SPACING } from "@/styles";
 
 export default function ChatScreen() {
@@ -12,7 +12,7 @@ export default function ChatScreen() {
   return (
     <View style={styles.wrapper}>
       <Header chatName={name} />
-      <Text>id: {id}</Text>
+      <MessageList />
       <MessageComposer id={id} />
     </View>
   );
