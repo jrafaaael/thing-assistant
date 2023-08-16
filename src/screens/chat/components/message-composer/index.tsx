@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import { Pressable, View } from "react-native";
 
-import { useSendMessage } from "../../hooks/use-send-message";
 import { Input } from "@/components/input";
 import { Send } from "@/components/icons/send";
 import { styles } from "./styles";
 import { COLORS } from "@/styles";
+import { socket } from "../../libs/socket-io";
 
 interface Props {
   id: string;
@@ -13,10 +13,9 @@ interface Props {
 
 export function MessageComposer({ id }: Props) {
   const message = useRef("");
-  const { mutate } = useSendMessage();
 
   const handleSendMessage = () => {
-    mutate({ content: message.current, roomId: id });
+    socket.emit("message.new", { content: message.current, roomId: id });
   };
 
   return (
@@ -25,6 +24,7 @@ export function MessageComposer({ id }: Props) {
         <Input
           multiline
           placeholder="Message"
+          style={styles.input}
           onChangeText={(text) => (message.current = text)}
         />
       </View>
