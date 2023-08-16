@@ -3,6 +3,8 @@ import { Prisma, Embedding } from '@prisma/client';
 import { PrismaVectorStore } from 'langchain/vectorstores/prisma';
 import { CohereEmbeddings } from 'langchain/embeddings/cohere';
 import { Document } from 'langchain/document';
+import { RetrievalQAChain } from 'langchain/chains';
+import { Cohere } from 'langchain/llms/cohere';
 
 import { PrismaService } from './prisma.service';
 
@@ -40,12 +42,17 @@ export class VectorStoreService {
     );
   }
 
-  async generateResponse() {
-    const resultOne = await this.vectorStore.similaritySearch(
-      'What is the JavaScript framework used in this examples?',
-      1,
-    );
+  async generateResponse({ content }: { content: string }) {
+    const model = new Cohere({
+      apiKey: process.env.COHERE_API_KEY,
+    });
+    const vectorStoreRetriever = this.vectorStore.asRetriever();
+    const chain = RetrievalQAChain.fromLLM(model, vectorStoreRetriever);
+    const result = await chain.call({
+      query: content,
+    });
+    // const results = await this.vectorStore.similaritySearch(content, 1);
 
-    return resultOne;
+    return result;
   }
 }
