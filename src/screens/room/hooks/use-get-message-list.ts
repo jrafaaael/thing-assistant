@@ -1,7 +1,8 @@
-import { axios } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
+import { axios } from "@/lib/axios";
+import { Message } from "../types/message";
 
-async function getMessageList(roomId: string): Promise<any[]> {
+async function getMessageList(roomId: string): Promise<Message[]> {
   const res = await axios.get(`/room/${roomId}/messages`);
 
   return res.data;
