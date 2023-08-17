@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import { FlatList } from "react-native";
-import { Message } from "../message";
-import { socket } from "../../libs/socket-io";
+import { FlatList, View } from "react-native";
 
-interface IMessage {
-  id: string;
-  content: string;
-  created_at: Date;
-  is_from_ai: boolean;
-  roomId: string;
-}
+import { Message } from "../message";
+import { Message as IMessage } from "../../types/message";
+import { socket } from "../../libs/socket-io";
+import { SPACING } from "@/styles";
 
 export function MessageList() {
   const [messsages, setMesssages] = useState<IMessage[]>([]);
@@ -31,8 +26,9 @@ export function MessageList() {
   return (
     <FlatList
       data={messsages}
-      renderItem={({ item: { content } }) => <Message content={content} />}
+      renderItem={({ item }) => <Message {...item} />}
       keyExtractor={({ id }) => id}
+      ItemSeparatorComponent={() => <View style={{ height: SPACING.base }} />}
     />
   );
 }
