@@ -7,13 +7,7 @@ import { Message as IMessage } from "../../types/message";
 import { styles } from "./styles";
 import { COLORS } from "@/styles";
 
-export function Message({ content, created_at, is_from_ai }: IMessage) {
-  const sentAt = new Date(created_at).toLocaleString(undefined, {
-    hour12: true,
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
+export function Message({ content, is_from_ai }: IMessage) {
   return (
     <View style={[styles.wrapper, is_from_ai ? styles.bot : styles.user]}>
       <View
@@ -32,8 +26,6 @@ export function Message({ content, created_at, is_from_ai }: IMessage) {
         <Text isTitle size="sm">
           {is_from_ai ? "Cohere" : "You"}
         </Text>
-        <Text>·</Text>
-        <Text size="xs">{sentAt}</Text>
       </View>
       <View
         style={[
