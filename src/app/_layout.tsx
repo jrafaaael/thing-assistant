@@ -42,7 +42,7 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerStyle: styles.header,
-          headerTintColor: COLORS.neutral[50],
+          headerTintColor: COLORS.zinc[50],
           headerShadowVisible: false,
           contentStyle: styles.content,
           animation: "slide_from_right",
@@ -56,9 +56,9 @@ export default function RootLayout() {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: COLORS.neutral[900],
+    backgroundColor: COLORS.zinc[900],
   },
   content: {
-    backgroundColor: COLORS.neutral[950],
+    backgroundColor: COLORS.zinc[950],
   },
 });

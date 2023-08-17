@@ -5,9 +5,9 @@ export const styles = StyleSheet.create({
   base: {
     paddingHorizontal: SPACING.sm,
     paddingVertical: 12,
-    backgroundColor: COLORS.neutral[900],
+    backgroundColor: COLORS.zinc[800],
     borderRadius: 22,
-    color: COLORS.neutral[50],
+    color: COLORS.zinc[50],
     fontSize: FONT_SIZE.base,
     fontFamily: "Inter-Regular",
   },

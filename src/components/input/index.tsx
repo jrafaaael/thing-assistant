@@ -12,7 +12,7 @@ export function Input({ style, ...props }: TextInputProps) {
   return (
     <TextInput
       style={[styles.base, props.multiline ? { height } : {}, style ?? {}]}
-      placeholderTextColor={COLORS.neutral[500]}
+      placeholderTextColor={COLORS.zinc[500]}
       {...props}
       onContentSizeChange={(e) => {
         const height = Math.min(e.nativeEvent.contentSize.height, maxHeight);

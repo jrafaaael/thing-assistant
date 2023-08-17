@@ -24,9 +24,9 @@ export function Message({ content, created_at, is_from_ai }: IMessage) {
       >
         <View style={styles.iconWrapper}>
           {is_from_ai ? (
-            <Cohere fill={COLORS.neutral[50]} />
+            <Cohere fill={COLORS.zinc[50]} />
           ) : (
-            <User fill={COLORS.neutral[50]} />
+            <User fill={COLORS.zinc[50]} />
           )}
         </View>
         <Text isTitle size="sm">
