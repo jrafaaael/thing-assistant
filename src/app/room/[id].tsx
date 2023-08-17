@@ -12,7 +12,7 @@ export default function RoomScreen() {
   return (
     <View style={styles.wrapper}>
       <Header roomName={name} />
-      <MessageList />
+      <MessageList id={id} />
       <MessageComposer id={id} />
     </View>
   );
