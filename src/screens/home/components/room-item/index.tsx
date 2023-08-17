@@ -7,11 +7,11 @@ interface Props {
   id: string;
 }
 
-export function Chat({ name, id }: Props) {
+export function RoomItem({ name, id }: Props) {
   return (
     <Link
       href={{
-        pathname: "/chat/[id]",
+        pathname: "/room/[id]",
         params: { id, name },
       }}
     >

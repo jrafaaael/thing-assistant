@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axios } from "@/lib/axios";
 
-interface CreateChatParams {
+interface CreateRoomParams {
   uri: string;
   name: string;
   type: string;
 }
 
-export async function createChat({ uri, name, type }: CreateChatParams) {
+export async function createRoom({ uri, name, type }: CreateRoomParams) {
   const blob = {
     uri,
     name,
@@ -17,7 +17,7 @@ export async function createChat({ uri, name, type }: CreateChatParams) {
   const body = new FormData();
   body.append("file", blob);
 
-  const res = await axios.post(`/chat/ingest`, body, {
+  const res = await axios.post(`/room/ingest`, body, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -26,14 +26,14 @@ export async function createChat({ uri, name, type }: CreateChatParams) {
   return res.data;
 }
 
-export function useCreateChat() {
+export function useCreateRoom() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ uri, name, type }: CreateChatParams) =>
-      createChat({ uri, name, type }),
+    mutationFn: ({ uri, name, type }: CreateRoomParams) =>
+      createRoom({ uri, name, type }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["chat"] });
+      queryClient.invalidateQueries({ queryKey: ["room"] });
     },
   });
 }

@@ -1,17 +1,17 @@
 import { StyleSheet, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 
-import { Header } from "@/screens/chat/components/header";
-import { MessageList } from "@/screens/chat/components/message-list";
-import { MessageComposer } from "@/screens/chat/components/message-composer";
+import { Header } from "@/screens/room/components/header";
+import { MessageList } from "@/screens/room/components/message-list";
+import { MessageComposer } from "@/screens/room/components/message-composer";
 import { SPACING } from "@/styles";
 
-export default function ChatScreen() {
+export default function RoomScreen() {
   const { id, name } = useLocalSearchParams();
 
   return (
     <View style={styles.wrapper}>
-      <Header chatName={name} />
+      <Header roomName={name} />
       <MessageList />
       <MessageComposer id={id} />
     </View>

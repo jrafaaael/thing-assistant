@@ -1,14 +1,14 @@
 import { Stack } from "expo-router";
 
 interface Props {
-  chatName: string;
+  roomName: string;
 }
 
-export function Header({ chatName }: Props) {
+export function Header({ roomName }: Props) {
   return (
     <Stack.Screen
       options={{
-        title: chatName,
+        title: roomName,
         headerTitleStyle: {
           fontFamily: "Inter-Bold",
         },

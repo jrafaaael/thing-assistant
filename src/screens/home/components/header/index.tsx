@@ -2,15 +2,15 @@ import { Pressable, View } from "react-native";
 import { Stack } from "expo-router";
 import * as DocumentPicker from "expo-document-picker";
 
-import { useCreateChat } from "../../hooks/use-create-chat";
+import { useCreateRoom } from "../../hooks/use-create-room";
 import { Plus } from "@/components/icons/plus";
 import { COLORS } from "@/styles";
 import { styles } from "./styles";
 
 export function Header() {
-  const { mutate } = useCreateChat();
+  const { mutate } = useCreateRoom();
 
-  const handleCreateChat = async () => {
+  const handleCreateRoom = async () => {
     const result = await DocumentPicker.getDocumentAsync({
       copyToCacheDirectory: false,
       type: "application/pdf",
@@ -36,7 +36,7 @@ export function Header() {
         },
         headerTitleAlign: "center",
         headerRight: () => (
-          <Pressable style={styles.upload} onPressIn={handleCreateChat}>
+          <Pressable style={styles.upload} onPressIn={handleCreateRoom}>
             <View style={styles.uploadIconWrapper}>
               <Plus stroke={COLORS.blue.ios} />
             </View>
