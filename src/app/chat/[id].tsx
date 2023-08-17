@@ -21,7 +21,6 @@ export default function ChatScreen() {
 const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: SPACING.base,
-    paddingTop: SPACING.sm,
     flex: 1,
     justifyContent: "space-between",
   },

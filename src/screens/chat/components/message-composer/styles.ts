@@ -3,7 +3,8 @@ import { ICON_SIZE, SPACING } from "@/styles";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    paddingVertical: SPACING.base,
+    paddingTop: SPACING.xxs,
+    paddingBottom: SPACING.base,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -16,7 +17,7 @@ export const styles = StyleSheet.create({
     maxHeight: 114,
   },
   send: {
-    marginTop: 'auto',
+    marginTop: "auto",
     padding: 10,
     paddingRight: 0,
   },

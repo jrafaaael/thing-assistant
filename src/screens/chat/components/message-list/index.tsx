@@ -5,6 +5,7 @@ import { Message } from "../message";
 import { Message as IMessage } from "../../types/message";
 import { socket } from "../../libs/socket-io";
 import { SPACING } from "@/styles";
+import { styles } from "./styles";
 
 export function MessageList() {
   const [messsages, setMesssages] = useState<IMessage[]>([]);
@@ -29,6 +30,7 @@ export function MessageList() {
       renderItem={({ item }) => <Message {...item} />}
       keyExtractor={({ id }) => id}
       ItemSeparatorComponent={() => <View style={{ height: SPACING.base }} />}
+      contentContainerStyle={styles.listContainer}
     />
   );
 }

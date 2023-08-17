@@ -3,9 +3,9 @@ import { Pressable, View } from "react-native";
 
 import { Input } from "@/components/input";
 import { Send } from "@/components/icons/send";
+import { socket } from "../../libs/socket-io";
 import { styles } from "./styles";
 import { COLORS } from "@/styles";
-import { socket } from "../../libs/socket-io";
 
 interface Props {
   id: string;
