@@ -5,6 +5,9 @@ export const COLORS = {
     900: "#171717",
     950: "#0a0a0a",
   },
+  zinc: {
+    800: "#27272a",
+  },
   blue: {
     ios: "#0a84ff",
   },
@@ -32,4 +35,4 @@ export const SPACING = {
 export const ICON_SIZE = {
   sm: 20,
   base: 24,
-}
+};
