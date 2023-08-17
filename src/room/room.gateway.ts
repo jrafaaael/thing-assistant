@@ -6,22 +6,22 @@ import {
 } from '@nestjs/websockets';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Server } from 'socket.io';
-import { ChatService } from './chat.service';
+import { RoomService } from './room.service';
 import { AskDto } from './dto/ask.dto';
 
 @WebSocketGateway(8000)
-export class ChatGateway {
+export class RoomGateway {
   @WebSocketServer()
   server: Server;
 
   constructor(
-    private chatService: ChatService,
+    private roomService: RoomService,
     private eventEmitter: EventEmitter2,
   ) {}
 
   @SubscribeMessage('message.new')
   async handleNewMessage(@MessageBody() data: AskDto) {
-    const message = await this.chatService.storeMessage({
+    const message = await this.roomService.storeMessage({
       content: data.content,
       roomId: data.roomId,
     });

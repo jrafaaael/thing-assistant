@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { ChatController } from './chat.controller';
+import { RoomController } from './room.controller';
 import { PrismaService } from 'src/common/prisma.service';
 import { VectorStoreService } from 'src/common/vector-store.service';
-import { ChatService } from './chat.service';
-import { ChatGateway } from './chat.gateway';
+import { RoomService } from './room.service';
+import { RoomGateway } from './room.gateway';
 import { AiListener } from './listener/ai.listener';
 
 @Module({
-  controllers: [ChatController],
+  controllers: [RoomController],
   imports: [EventEmitterModule.forRoot()],
-  providers: [PrismaService, VectorStoreService, ChatService, ChatGateway, AiListener],
+  providers: [PrismaService, VectorStoreService, RoomService, RoomGateway, AiListener],
 })
-export class ChatModule {}
+export class RoomModule {}
