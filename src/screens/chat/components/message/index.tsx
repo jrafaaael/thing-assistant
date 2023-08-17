@@ -32,6 +32,8 @@ export function Message({ content, created_at, is_from_ai }: IMessage) {
         <Text isTitle size="sm">
           {is_from_ai ? "Cohere" : "You"}
         </Text>
+        <Text>·</Text>
+        <Text size="xs">{sentAt}</Text>
       </View>
       <View
         style={[
