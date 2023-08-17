@@ -18,12 +18,12 @@ export function Message({ content, is_from_ai }: IMessage) {
       >
         <View style={styles.iconWrapper}>
           {is_from_ai ? (
-            <Cohere fill={COLORS.zinc[50]} />
+            <Cohere fill={COLORS.zinc[400]} />
           ) : (
-            <User fill={COLORS.zinc[50]} />
+            <User fill={COLORS.zinc[400]} />
           )}
         </View>
-        <Text isTitle size="sm">
+        <Text size="sm" style={styles.senderText}>
           {is_from_ai ? "Cohere" : "You"}
         </Text>
       </View>

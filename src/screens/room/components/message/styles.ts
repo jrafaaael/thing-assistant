@@ -27,6 +27,9 @@ export const styles = StyleSheet.create({
     width: 10,
     aspectRatio: 1,
   },
+  senderText: {
+    color: COLORS.zinc[400],
+  },
   bubbleBase: {
     paddingVertical: SPACING.xxs,
     paddingHorizontal: SPACING.sm,
