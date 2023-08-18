@@ -16,35 +16,43 @@ model Embedding {
   vector  Unsupported("vector")?
 
   document   Document @relation(fields: [documentId], references: [id])
-  documentId String
+  documentId String   @map("document_id")
+
+  @@map("embedding")
 }
 
 model Document {
-  id         String   @id @default(cuid())
-  name       String
-  created_at DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
 
   embeddings Embedding[]
 
   room   Room   @relation(fields: [roomId], references: [id])
-  roomId String
+  roomId String @map("room_id")
+
+  @@map("document")
 }
 
 model Room {
-  id         String   @id @default(cuid())
-  name       String
-  created_at DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
 
   documents Document[]
   messages  Message[]
+
+  @@map("room")
 }
 
 model Message {
-  id         String   @id @default(cuid())
-  content    String
-  created_at DateTime @default(now())
-  is_from_ai Boolean  @default(false)
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+  isFromAi  Boolean  @default(false) @map("is_from_ai")
 
   room   Room   @relation(fields: [roomId], references: [id])
-  roomId String
+  roomId String @map("room_id")
+
+  @@map("message")
 }

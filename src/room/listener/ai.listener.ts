@@ -19,7 +19,7 @@ export class AiListener {
     const response = await this.vectorStore.generateResponse({ content });
     const message = await this.roomService.storeMessage({
       content: response.text,
-      is_from_ai: true,
+      isFromAi: true,
       roomId,
     });
 
