@@ -11,7 +11,7 @@ export function RoomItem({ name, id }: Props) {
   return (
     <Link
       href={{
-        pathname: "/room/[id]",
+        pathname: "/rooms/[id]",
         params: { id, name },
       }}
     >
