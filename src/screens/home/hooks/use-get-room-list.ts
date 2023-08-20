@@ -8,14 +8,14 @@ interface Room {
 }
 
 export async function getRoomList(): Promise<Room[]> {
-  const res = await axios.get("/room");
+  const res = await axios.get("/rooms");
 
   return res.data;
 }
 
 export function useGetRoomList() {
   return useQuery({
-    queryKey: ["room"],
+    queryKey: ["rooms"],
     queryFn: getRoomList,
   });
 }
