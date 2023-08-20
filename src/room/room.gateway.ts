@@ -23,12 +23,12 @@ export class RoomGateway {
   async handleNewMessage(@MessageBody() data: AskDto) {
     const message = await this.roomService.storeMessage({
       content: data.content,
-      roomId: data.roomId,
+      roomId: +data.roomId,
     });
 
     this.eventEmitter.emit('ai.generate', {
       content: data.content,
-      roomId: data.roomId,
+      roomId: +data.roomId,
     });
 
     this.server.emit('message.received', message);

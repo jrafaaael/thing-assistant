@@ -40,7 +40,7 @@ export class RoomService {
     return message;
   }
 
-  async generateEmbeddings(file: Express.Multer.File, roomId: string) {
+  async generateEmbeddings(file: Express.Multer.File, roomId: number) {
     const document = await this.prismaService.document.create({
       data: {
         name: file.originalname,

@@ -20,7 +20,7 @@ export class AiListener {
     const message = await this.roomService.storeMessage({
       content: response.text,
       isFromAi: true,
-      roomId,
+      roomId: +roomId,
     });
 
     this.roomGateway.server.emit('message.generated', message);

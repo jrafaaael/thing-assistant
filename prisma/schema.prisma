@@ -28,14 +28,14 @@ model Document {
 
   embeddings Embedding[]
 
-  room   Room   @relation(fields: [roomId], references: [id])
-  roomId String @map("room_id")
+  room   Room @relation(fields: [roomId], references: [id])
+  roomId Int  @map("room_id")
 
   @@map("document")
 }
 
 model Room {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   name      String
   createdAt DateTime @default(now()) @map("created_at")
 
@@ -46,13 +46,13 @@ model Room {
 }
 
 model Message {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   content   String
   createdAt DateTime @default(now()) @map("created_at")
   isFromAi  Boolean  @default(false) @map("is_from_ai")
 
-  room   Room   @relation(fields: [roomId], references: [id])
-  roomId String @map("room_id")
+  room   Room @relation(fields: [roomId], references: [id])
+  roomId Int  @map("room_id")
 
   @@map("message")
 }
