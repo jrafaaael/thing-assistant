@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function MessageList({ id }: Props) {
-  const { data = [] } = useGetMessageList(id);
+  const { data } = useGetMessageList(id);
 
   useEffect(() => {
     function received(message: IMessage) {
@@ -31,7 +31,7 @@ export function MessageList({ id }: Props) {
 
   return (
     <FlatList
-      data={[...data].reverse()}
+      data={data?.messages}
       renderItem={({ item }) => <Message {...item} />}
       keyExtractor={({ id }) => id}
       inverted

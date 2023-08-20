@@ -12,5 +12,9 @@ export function useGetMessageList(roomId: string) {
   return useQuery({
     queryKey: ["rooms", roomId, "messages"],
     queryFn: () => getMessageList(roomId),
+    select: (data) => ({
+      messages: data.messages.reverse(),
+      metadata: data.metadata,
+    }),
   });
 }
