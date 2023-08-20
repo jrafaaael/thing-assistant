@@ -13,7 +13,7 @@ const splitter = new RecursiveCharacterTextSplitter({
 });
 
 @Injectable()
-export class RoomService {
+export class RoomsService {
   constructor(
     private prismaService: PrismaService,
     private vectorStoreService: VectorStoreService,

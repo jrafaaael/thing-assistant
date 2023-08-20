@@ -5,14 +5,14 @@ import { PrismaService } from 'src/common/prisma.service';
 import { VectorStoreService } from 'src/common/vector-store.service';
 import { MessagesController } from 'src/messages/messages.controller';
 
-import { RoomController } from './room.controller';
-import { RoomService } from './room.service';
-import { RoomGateway } from './room.gateway';
+import { RoomsController } from './rooms.controller';
+import { RoomsService } from './rooms.service';
+import { RoomsGateway } from './rooms.gateway';
 import { AiListener } from './listener/ai.listener';
 
 @Module({
-  controllers: [RoomController, MessagesController],
+  controllers: [RoomsController, MessagesController],
   imports: [EventEmitterModule.forRoot()],
-  providers: [PrismaService, VectorStoreService, RoomService, RoomGateway, AiListener],
+  providers: [PrismaService, VectorStoreService, RoomsService, RoomsGateway, AiListener],
 })
-export class RoomModule {}
+export class RoomsModule {}

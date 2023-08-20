@@ -6,22 +6,22 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { RoomService } from './room.service';
+import { RoomsService } from './rooms.service';
 
-@Controller('room')
-export class RoomController {
-  constructor(private roomService: RoomService) {}
+@Controller('rooms')
+export class RoomsController {
+  constructor(private roomsService: RoomsService) {}
 
   @Get()
   async getAll() {
-    return await this.roomService.getAll();
+    return await this.roomsService.getAll();
   }
 
   @Post('ingest')
   @UseInterceptors(FileInterceptor('file'))
   async ingest(@UploadedFile() file: Express.Multer.File) {
-    const room = await this.roomService.createRoom({ name: file.originalname });
-    await this.roomService.generateEmbeddings(file, room.id);
+    const room = await this.roomsService.createRoom({ name: file.originalname });
+    await this.roomsService.generateEmbeddings(file, room.id);
 
     return { msg: 'ok' };
   }
