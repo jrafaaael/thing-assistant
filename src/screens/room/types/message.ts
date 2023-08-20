@@ -1,7 +1,7 @@
 export interface Message {
   id: string;
   content: string;
-  created_at: Date;
-  is_from_ai: boolean;
+  createdAt: Date;
+  isFromAi: boolean;
   roomId: string;
 }

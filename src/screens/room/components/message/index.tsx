@@ -7,30 +7,30 @@ import { Message as IMessage } from "../../types/message";
 import { styles } from "./styles";
 import { COLORS } from "@/styles";
 
-export function Message({ content, is_from_ai }: IMessage) {
+export function Message({ content, isFromAi }: IMessage) {
   return (
-    <View style={[styles.wrapper, is_from_ai ? styles.bot : styles.user]}>
+    <View style={[styles.wrapper, isFromAi ? styles.bot : styles.user]}>
       <View
         style={[
           styles.senderWrapper,
-          is_from_ai ? styles.senderWrapperBot : styles.senderWrapperUser,
+          isFromAi ? styles.senderWrapperBot : styles.senderWrapperUser,
         ]}
       >
         <View style={styles.iconWrapper}>
-          {is_from_ai ? (
+          {isFromAi ? (
             <Cohere fill={COLORS.zinc[400]} />
           ) : (
             <User fill={COLORS.zinc[400]} />
           )}
         </View>
         <Text size="sm" style={styles.senderText}>
-          {is_from_ai ? "Cohere" : "You"}
+          {isFromAi ? "Cohere" : "You"}
         </Text>
       </View>
       <View
         style={[
           styles.bubbleBase,
-          is_from_ai ? styles.bubbleBot : styles.bubbleUser,
+          isFromAi ? styles.bubbleBot : styles.bubbleUser,
         ]}
       >
         <Text>{content}</Text>
