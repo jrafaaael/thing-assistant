@@ -32,5 +32,6 @@ export function useInfiniteMessageList(roomId: string) {
       pages: [...data.pages],
       pageParams: [...data.pageParams],
     }),
+    staleTime: Infinity,
   });
 }
