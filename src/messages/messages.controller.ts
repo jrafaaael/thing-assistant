@@ -1,16 +1,30 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { PrismaService } from 'src/common/prisma.service';
+import { Controller, Get, Param, Query } from '@nestjs/common';
+import { MessagesService } from './messages.service';
 
-@Controller('room')
+@Controller('rooms')
 export class MessagesController {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private messagesService: MessagesService) {}
 
   @Get('/:roomId/messages')
-  async getAllMessagesByRoomId(@Param('roomId') roomId: string) {
-    return this.prismaService.message.findMany({
-      where: {
-        roomId,
+  async getPaginatedMessagesByRoomId(
+    @Param('roomId') roomId: string,
+    @Query('cursor') cursor: string = '-1',
+  ) {
+    const messages =
+      cursor === '-1'
+        ? await this.messagesService.getLatestMessages(+roomId)
+        : await this.messagesService.getMessagesByCursor(+roomId, +cursor);
+
+    // FIX: prevent extra call. Don't calculate `nextCursor` with the latests fetched message.
+    // Instead, check if exists messages enought to another call.
+    const nextCursor =
+      messages.length < this.messagesService.TAKE ? null : messages.at(-1)?.id;
+
+    return {
+      messages,
+      metadata: {
+        nextCursor,
       },
-    });
+    };
   }
 }
