@@ -38,6 +38,7 @@ export function MessageList({ id }: Props) {
       inverted
       ItemSeparatorComponent={() => <View style={{ height: SPACING.base }} />}
       contentContainerStyle={styles.listContainer}
+      showsVerticalScrollIndicator={false}
       onEndReachedThreshold={5}
       onEndReached={() => fetchNextPage()}
     />
