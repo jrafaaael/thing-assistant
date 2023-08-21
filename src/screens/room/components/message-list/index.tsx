@@ -2,18 +2,19 @@ import { useEffect } from "react";
 import { FlatList, View } from "react-native";
 
 import { Message } from "../message";
-import { Message as IMessage } from "../../types/message";
+import { useInfiniteMessageList } from "../../hooks/use-infinite-message-list";
 import { socket } from "../../libs/socket-io";
+import { Message as IMessage } from "../../types/message";
 import { SPACING } from "@/styles";
 import { styles } from "./styles";
-import { useGetMessageList } from "../../hooks/use-get-message-list";
 
 interface Props {
   id: string;
 }
 
 export function MessageList({ id }: Props) {
-  const { data } = useGetMessageList(id);
+  const { data, fetchNextPage } = useInfiniteMessageList(id);
+  const messages = data?.pages.flatMap((data) => data.messages);
 
   useEffect(() => {
     function received(message: IMessage) {
@@ -31,12 +32,14 @@ export function MessageList({ id }: Props) {
 
   return (
     <FlatList
-      data={data?.messages}
+      data={messages}
       renderItem={({ item }) => <Message {...item} />}
       keyExtractor={({ id }) => id}
       inverted
       ItemSeparatorComponent={() => <View style={{ height: SPACING.base }} />}
       contentContainerStyle={styles.listContainer}
+      onEndReachedThreshold={5}
+      onEndReached={() => fetchNextPage()}
     />
   );
 }
