@@ -2,12 +2,12 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { axios } from "@/lib/axios";
 import { Message } from "../types/message";
 
-interface InfiniteMessageListParams {
+interface GetMessageListParams {
   roomId: string;
   cursor?: number;
 }
 
-interface InfiniteMessageListResponse {
+export interface InfiniteMessageListResponse {
   messages: Message[];
   metadata: {
     nextCursor: number | null;
@@ -17,7 +17,7 @@ interface InfiniteMessageListResponse {
 async function getMessageList({
   roomId,
   cursor = -1,
-}: InfiniteMessageListParams): Promise<InfiniteMessageListResponse> {
+}: GetMessageListParams): Promise<InfiniteMessageListResponse> {
   const res = await axios.get(`/rooms/${roomId}/messages?cursor=${cursor}`);
 
   return res.data;
@@ -28,10 +28,6 @@ export function useInfiniteMessageList(roomId: string) {
     queryKey: ["rooms", roomId, "messages"],
     queryFn: ({ pageParam }) => getMessageList({ roomId, cursor: pageParam }),
     getNextPageParam: (last) => last.metadata.nextCursor ?? undefined,
-    select: (data) => ({
-      pages: [...data.pages],
-      pageParams: [...data.pageParams],
-    }),
     staleTime: Infinity,
   });
 }
