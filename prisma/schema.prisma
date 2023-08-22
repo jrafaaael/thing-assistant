@@ -17,8 +17,6 @@ model Embedding {
 
   document   Document @relation(fields: [documentId], references: [id])
   documentId String   @map("document_id")
-
-  @@map("embedding")
 }
 
 model Document {
@@ -30,8 +28,6 @@ model Document {
 
   room   Room @relation(fields: [roomId], references: [id])
   roomId Int  @map("room_id")
-
-  @@map("document")
 }
 
 model Room {
@@ -41,8 +37,6 @@ model Room {
 
   documents Document[]
   messages  Message[]
-
-  @@map("room")
 }
 
 model Message {
@@ -53,6 +47,4 @@ model Message {
 
   room   Room @relation(fields: [roomId], references: [id])
   roomId Int  @map("room_id")
-
-  @@map("message")
 }
