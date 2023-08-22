@@ -17,7 +17,7 @@ export async function createRoom({ uri, name, type }: CreateRoomParams) {
   const body = new FormData();
   body.append("file", blob);
 
-  const res = await axios.post(`/rooms/ingest`, body, {
+  const res = await axios.post("/rooms/ingest", body, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -33,7 +33,7 @@ export function useCreateRoom() {
     mutationFn: ({ uri, name, type }: CreateRoomParams) =>
       createRoom({ uri, name, type }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["room"] });
+      queryClient.invalidateQueries({ queryKey: ["rooms"] });
     },
   });
 }
