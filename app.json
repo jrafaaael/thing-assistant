@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "file-assistant",
-    "slug": "file-assistant",
+    "name": "thing-assistant",
+    "slug": "thing-assistant",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
