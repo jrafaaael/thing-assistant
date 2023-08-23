@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: file-assistant
+      POSTGRES_DB: thing-assistant
     volumes:
       - db:/var/lib/postgresql/data
     restart: always
