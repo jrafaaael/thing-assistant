@@ -31,6 +31,6 @@ export class RoomsGateway {
       roomId: +data.roomId,
     });
 
-    this.server.emit('message.received', message);
+    return message;
   }
 }
