@@ -28,10 +28,10 @@ cd thing-assistant-mobile/
 npm i
 ```
 
-2. Create `.env` file with correct values
+2. Create `.env.local` file with correct values
 
 ```bash
-cp .env.example .env
+cp .env.example .env.local
 ```
 
 3. Create a development build **(if you have installed xCode and Android Studio you can use `--local` flag to build the project locally instead of Expo servers)**
