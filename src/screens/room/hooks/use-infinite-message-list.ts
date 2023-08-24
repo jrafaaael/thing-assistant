@@ -28,6 +28,5 @@ export function useInfiniteMessageList(roomId: string) {
     queryKey: ["rooms", roomId, "messages"],
     queryFn: ({ pageParam }) => getMessageList({ roomId, cursor: pageParam }),
     getNextPageParam: (last) => last.metadata.nextCursor ?? undefined,
-    staleTime: Infinity,
   });
 }
