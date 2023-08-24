@@ -20,7 +20,7 @@ export class RoomsController {
   @Post('ingest')
   @UseInterceptors(FileInterceptor('file'))
   async ingest(@UploadedFile() file: Express.Multer.File) {
-    const room = await this.roomsService.createRoom({
+    const room = await this.roomsService.create({
       name: file.originalname,
     });
     await this.roomsService.generateEmbeddings(file, room.id);

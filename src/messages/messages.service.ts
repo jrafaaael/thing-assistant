@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+
 import { PrismaService } from 'src/common/prisma.service';
 
 @Injectable()
@@ -28,5 +30,14 @@ export class MessagesService {
       },
       orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
     });
+  }
+
+  // Why this needs `...UncheckedCreateInput`? Idk, I hate Prisma lol
+  async storeMessage(data: Prisma.MessageUncheckedCreateInput) {
+    const message = await this.prismaService.message.create({
+      data,
+    });
+
+    return message;
   }
 }

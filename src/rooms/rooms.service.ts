@@ -23,21 +23,12 @@ export class RoomsService {
     return await this.prismaService.room.findMany();
   }
 
-  async createRoom(data: Prisma.RoomCreateInput) {
+  async create(data: Prisma.RoomCreateInput) {
     const room = await this.prismaService.room.create({
       data,
     });
 
     return room;
-  }
-
-  // Why this needs `...UncheckedCreateInput`? Idk, I hate Prisma lol
-  async storeMessage(data: Prisma.MessageUncheckedCreateInput) {
-    const message = await this.prismaService.message.create({
-      data,
-    });
-
-    return message;
   }
 
   async generateEmbeddings(file: Express.Multer.File, roomId: number) {
