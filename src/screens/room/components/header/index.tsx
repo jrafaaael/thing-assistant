@@ -5,10 +5,12 @@ interface Props {
 }
 
 export function Header({ roomName }: Props) {
+  const [filename, extension] = roomName.split(".");
+
   return (
     <Stack.Screen
       options={{
-        title: roomName,
+        title: `${filename.slice(0, 20)}.${extension}`,
         headerTitleStyle: {
           fontFamily: "Inter-Bold",
         },
