@@ -16,24 +16,24 @@ model Embedding {
   vector  Unsupported("vector")?
 
   document   Document @relation(fields: [documentId], references: [id])
-  documentId String   @map("document_id")
+  documentId String
 }
 
 model Document {
   id        String   @id @default(cuid())
   name      String
-  createdAt DateTime @default(now()) @map("created_at")
+  createdAt DateTime @default(now())
 
   embeddings Embedding[]
 
   room   Room @relation(fields: [roomId], references: [id])
-  roomId Int  @map("room_id")
+  roomId Int
 }
 
 model Room {
   id        Int      @id @default(autoincrement())
   name      String
-  createdAt DateTime @default(now()) @map("created_at")
+  createdAt DateTime @default(now())
 
   documents Document[]
   messages  Message[]
@@ -42,9 +42,9 @@ model Room {
 model Message {
   id        Int      @id @default(autoincrement())
   content   String
-  createdAt DateTime @default(now()) @map("created_at")
-  isFromAi  Boolean  @default(false) @map("is_from_ai")
+  createdAt DateTime @default(now())
+  isFromAi  Boolean  @default(false)
 
   room   Room @relation(fields: [roomId], references: [id])
-  roomId Int  @map("room_id")
+  roomId Int
 }
