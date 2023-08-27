@@ -52,6 +52,10 @@ export class RoomsService {
       ),
     );
 
-    await this.vectorStoreService.generateEmbeddings(doc, document.id);
+    await this.vectorStoreService.generateEmbeddings({
+      documentContent: doc,
+      documentId: document.id,
+      roomId,
+    });
   }
 }

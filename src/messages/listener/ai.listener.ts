@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
+import { Cohere } from 'langchain/llms/cohere';
 
 import { VectorStoreService } from 'src/common/vector-store.service';
 import { MessagesGateway } from '../messages.gateway';
 import { MessagesService } from '../messages.service';
-import { NewMessageDto } from '../dto/new-message.dto';
 
 @Injectable()
 export class AiListener {
@@ -15,8 +15,18 @@ export class AiListener {
   ) {}
 
   @OnEvent('ai.generate')
-  async handleAiResponseEvent({ content, roomId }: NewMessageDto) {
-    const response = await this.vectorStore.generateResponse({ content });
+  async handleAiResponseEvent({
+    content,
+    roomId,
+  }: {
+    content: string;
+    roomId: number;
+  }) {
+    const response = await this.vectorStore.generateResponse({
+      content,
+      roomId,
+      model: new Cohere({ apiKey: process.env.COHERE_API_KEY }),
+    });
     const message = await this.messagesService.storeMessage({
       content: response.text,
       isFromAi: true,
