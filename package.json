@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "mobile:dev": "yarn workspace mobile start",
+    "backend:dev": "yarn workspace backend start:dev"
   },
   "keywords": [],
   "author": "jrafaaael <jrmd070102@gmail.com>",
