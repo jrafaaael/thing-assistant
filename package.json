@@ -4,7 +4,8 @@
   "private": true,
   "description": "",
   "workspaces": [
-    "./mobile"
+    "./mobile",
+    "./backend"
   ],
   "scripts": {
     "mobile:dev": "yarn workspace mobile start",
