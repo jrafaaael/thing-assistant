@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Embedding {
+  id      String                 @id @default(cuid())
+  content String
+  vector  Unsupported("vector")?
+
+  document   Document @relation(fields: [documentId], references: [id])
+  documentId String
+
+  room   Room @relation(fields: [roomId], references: [id])
+  roomId Int
+}
+
+model Document {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+
+  embeddings Embedding[]
+
+  room   Room @relation(fields: [roomId], references: [id])
+  roomId Int
+}
+
+model Room {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+
+  documents Document[]
+  messages  Message[]
+  Embedding Embedding[]
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  isFromAi  Boolean  @default(false)
+
+  room   Room @relation(fields: [roomId], references: [id])
+  roomId Int
+}
