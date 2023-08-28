@@ -9,6 +9,8 @@
   ],
   "scripts": {
     "mobile:dev": "yarn workspace mobile start",
+    "mobile:build:dev:android": "yarn workspace mobile build:dev:android",
+    "mobile:build:dev:ios": "yarn workspace mobile build:dev:ios",
     "backend:dev": "yarn workspace backend start:dev"
   },
   "keywords": [],
