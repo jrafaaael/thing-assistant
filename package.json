@@ -7,7 +7,7 @@
     "./mobile"
   ],
   "scripts": {
-    "mobile:dev": "npm run start --workspace=mobile"
+    "mobile:dev": "yarn workspace mobile start",
   },
   "keywords": [],
   "author": "jrafaaael <jrmd070102@gmail.com>",
