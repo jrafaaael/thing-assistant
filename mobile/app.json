@@ -23,7 +23,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.jrafaaael.fileassistant"
+      "package": "com.jrafaaael.thingassistant"
     },
     "web": {
       "bundler": "metro",
@@ -42,7 +42,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "e3bcb93b-9771-44c8-aae5-5bbff550f262"
+        "projectId": "05bf9618-5e93-4cff-8504-0a3436f5b0ad"
       }
     }
   }

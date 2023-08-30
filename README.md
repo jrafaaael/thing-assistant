@@ -4,14 +4,16 @@ Yes, another `chat-with-your-pdf`-like app. But it's open-source (and self-hosta
 
 ## Why we need another one?
 
-Probably we don't need another one, but this implementation is a mobile application instead of a web application. Also we use a local db (`postgres` with `pgvector` extension) instead of a vector store service (see [backend implementation](https://github.com/jrafaaael/thing-assistant-backend)).
+Probably we don't need another one, but this implementation is a mobile application instead of a web application. Also we use a local db (`postgres` with `pgvector` extension) instead of a vector store service.
 
 ## Local development
 
 ### Requirements
 
 1. `Node.js LTS`
-2. **(OPTIONAL)** Expo EAS account and `eas-cli` **(no needed if you have installed `xCode` and `Android Studio`)**
+2. `Yarn`
+3. `Docker` and `docker-compose`
+4. **(OPTIONAL)** Expo EAS account and `eas-cli` **(no needed if you have installed `xCode` and `Android Studio`)**
 
 ```bash
 npm install -g eas-cli
@@ -25,26 +27,37 @@ eas login
 ```bash
 git clone git@github.com:jrafaaael/thing-assistant-mobile.git
 cd thing-assistant-mobile/
-npm i
+yarn install
 ```
 
-2. Create `.env.local` file with correct values
+2. Create `.env.*` files and populate with correct values
 
 ```bash
-cp .env.example .env.local
+cp backend/.env.example .env && cp mobile/.env.example .env.local
 ```
 
-3. Create a development build **(if you have installed xCode and Android Studio you can use `--local` flag to build the project locally instead of Expo servers)**
+3. Create a development build **(if you already have xCode and Android Studio installed, you can use `--local` flag to build the project locally instead of Expo servers)**
 
 ```bash
-eas build --profile development --platform all # or android or ios
+yarn mobile:build:dev:android # or yarn mobile:build:dev:ios
 ```
 
-
-4. Start the development server
+4. Run the container
 
 ```bash
-yarn start
+docker compose up
+```
+
+5. In a separate terminal, start the backend development server
+
+```bash
+yarn backend:dev
+```
+
+4. In a separate terminal, start the mobile development server
+
+```bash
+yarn mobile:dev
 ```
 
 ## Features
@@ -55,12 +68,16 @@ yarn start
 
 - [ ] Background uploads
 
+- [ ] Chat with multiple file extension
+
 - [ ] Chat with web pages
 
 - [ ] Multi-file rooms
+
+- [ ] OCR for pdf files
 
 - [ ] Chat with multiple llm on-the-fly
 
 ## Others
 
-- 🤔 Create a monorepo with both mobile and backend code
+- 🐋 Fix `Dockerfile`
