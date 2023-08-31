@@ -4,7 +4,7 @@ import { COLORS, SPACING } from "@/styles";
 export const styles = StyleSheet.create({
   wrapper: {
     maxWidth: "80%",
-    gap: 4,
+    gap: SPACING.xxs / 2,
   },
   bot: {
     alignSelf: "flex-start",
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   senderWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
+    gap: SPACING.xxs / 2,
   },
   senderWrapperBot: {
     alignSelf: "flex-start",
