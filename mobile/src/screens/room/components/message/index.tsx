@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Text } from "@/components/text";
 import { Cohere } from "@/components/icons/cohere";
 import { User } from "@/components/icons/user";
-import { Message as IMessage } from "../../types/message";
+import { Message as IMessage } from "@/types/message";
 import { styles } from "./styles";
 import { COLORS } from "@/styles";
 

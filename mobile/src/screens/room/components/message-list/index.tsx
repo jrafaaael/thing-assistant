@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Message } from "../message";
 import { useInfiniteMessageList } from "../../hooks/use-infinite-message-list";
 import { socket } from "../../libs/socket-io";
-import { Message as IMessage } from "../../types/message";
+import { Message as IMessage } from "@/types/message";
 import { SPACING } from "@/styles";
 import { styles } from "./styles";
 

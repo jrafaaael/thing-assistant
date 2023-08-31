@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { axios } from "@/lib/axios";
-import { Message } from "../types/message";
+import { Message } from "@/types/message";
 
 interface GetMessageListParams {
   roomId: string;
