@@ -1,7 +1,8 @@
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 
 import { RoomItem } from "../room-item";
 import { useGetRoomList } from "../../hooks/use-get-room-list";
+import { styles } from "./styles";
 
 export function RoomList() {
   const { data } = useGetRoomList();
@@ -9,8 +10,9 @@ export function RoomList() {
   return (
     <FlatList
       data={data}
-      renderItem={({ item: { name, id } }) => <RoomItem name={name} id={id} />}
+      renderItem={({ item }) => <RoomItem {...item} />}
       keyExtractor={({ id }) => id}
+      ItemSeparatorComponent={() => <View style={styles.separator}></View>}
     />
   );
 }
