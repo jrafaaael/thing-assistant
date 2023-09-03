@@ -4,8 +4,8 @@ import { Text } from "@/components/text";
 import { Cohere } from "@/components/icons/cohere";
 import { User } from "@/components/icons/user";
 import { Message as IMessage } from "@/types/message";
-import { styles } from "./styles";
 import { COLORS } from "@/styles";
+import { styles } from "./styles";
 
 export function Message({ content, isFromAi }: IMessage) {
   return (
@@ -23,7 +23,7 @@ export function Message({ content, isFromAi }: IMessage) {
             <User fill={COLORS.zinc[400]} />
           )}
         </View>
-        <Text size="sm" style={styles.senderText}>
+        <Text isTitle size="sm" style={styles.senderText}>
           {isFromAi ? "Cohere" : "You"}
         </Text>
       </View>
