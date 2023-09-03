@@ -20,7 +20,14 @@ export class RoomsService {
   ) {}
 
   async getAll() {
-    return await this.prismaService.room.findMany();
+    return await this.prismaService.room.findMany({
+      include: {
+        messages: { take: 1, orderBy: { createdAt: 'desc' } },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   }
 
   async create(data: Prisma.RoomCreateInput) {
