@@ -6,7 +6,7 @@ function createRandomMessage(): Prisma.MessageUncheckedCreateInput {
     content: faker.lorem.paragraphs(),
     isFromAi: faker.datatype.boolean(),
     roomId: faker.number.int({ min: 1, max: 25 }),
-    createdAt: new Date()
+    createdAt: faker.date.recent({ days: 10 }),
   };
 }
 
