@@ -1,11 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "@/lib/axios";
-
-interface Room {
-  id: string;
-  name: string;
-  created_at: string;
-}
+import { Room } from "../types/room";
 
 export async function getRoomList(): Promise<Room[]> {
   const res = await axios.get("/rooms");

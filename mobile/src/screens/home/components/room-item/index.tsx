@@ -1,13 +1,11 @@
 import { Link } from "expo-router";
 
 import { Text } from "@/components/text";
+import { Room } from "../../types/room";
 
-interface Props {
-  name: string;
-  id: string;
-}
+interface Props extends Room {}
 
-export function RoomItem({ name, id }: Props) {
+export function RoomItem({ name, id, createdAt, messages }: Props) {
   return (
     <Link
       href={{
