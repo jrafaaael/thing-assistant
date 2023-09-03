@@ -9,10 +9,13 @@ import { styles } from "./styles";
 
 interface Props extends Room {}
 
-export function RoomItem({ name, id, createdAt, messages }: Props) {
-  const lastMessage = messages?.[0];
-  const updatedAt = new Date(lastMessage?.createdAt || createdAt);
-
+export function RoomItem({
+  name,
+  id,
+  updatedAt,
+  lastMessageContent,
+  isFromAi,
+}: Props) {
   return (
     <Link
       href={{
@@ -27,15 +30,12 @@ export function RoomItem({ name, id, createdAt, messages }: Props) {
             {name}
           </Text>
           <Text size="sm" style={styles.date}>
-            {formatDate(updatedAt)}
+            {formatDate(new Date(updatedAt))}
           </Text>
         </View>
         <View style={styles.body}>
-          {lastMessage ? (
-            <Body
-              isFromAi={lastMessage.isFromAi}
-              content={lastMessage.content}
-            />
+          {lastMessageContent ? (
+            <Body isFromAi={Boolean(isFromAi)} content={lastMessageContent} />
           ) : (
             <Text></Text>
           )}

@@ -1,8 +1,7 @@
-import { Message } from "@/types/message";
-
 export interface Room {
   id: string;
   name: string;
-  createdAt: string;
-  messages: [Message] | [];
+  updatedAt: Date;
+  isFromAi: boolean | null;
+  lastMessageContent: string | null;
 }
