@@ -6,6 +6,7 @@ import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 
 import { PrismaService } from 'src/common/prisma.service';
 import { VectorStoreService } from 'src/common/vector-store.service';
+import { RoomWithMessageDto } from './dto/room-with-message.dto';
 
 const splitter = new RecursiveCharacterTextSplitter({
   chunkSize: 1024,
@@ -20,14 +21,25 @@ export class RoomsService {
   ) {}
 
   async getAll() {
-    return await this.prismaService.room.findMany({
-      include: {
-        messages: { take: 1, orderBy: { createdAt: 'desc' } },
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
+    return await this.prismaService.$queryRaw<RoomWithMessageDto[]>`
+      select
+        r.id,
+        r.name,
+        m.content as "lastMessageContent",
+        m."isFromAi",
+        coalesce(m."createdAt", r."createdAt") as "updatedAt"
+      from "Room" r
+      left join (
+        select *
+        from "Message"
+        where ("roomId", "createdAt") in (
+          select "roomId", max("createdAt")
+          from "Message"
+          group by "roomId"
+        )
+      ) m on r.id = m."roomId"
+      order by m."createdAt" desc, r."createdAt" desc;
+    `;
   }
 
   async create(data: Prisma.RoomCreateInput) {
