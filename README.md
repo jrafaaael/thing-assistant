@@ -25,15 +25,15 @@ eas login
 1. Clone the repo and install dependencies
 
 ```bash
-git clone git@github.com:jrafaaael/thing-assistant-mobile.git
-cd thing-assistant-mobile/
+git clone git@github.com:jrafaaael/thing-assistant.git
+cd thing-assistant/
 yarn install
 ```
 
 2. Create `.env.*` files and populate with correct values
 
 ```bash
-cp backend/.env.example .env && cp mobile/.env.example .env.local
+cp backend/.env.example backend/.env && cp mobile/.env.example mobile/.env.local
 ```
 
 3. Create a development build **(if you already have xCode and Android Studio installed, you can use `--local` flag to build the project locally instead of Expo servers)**
