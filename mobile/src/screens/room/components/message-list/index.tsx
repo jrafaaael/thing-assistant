@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { FlatList, View } from "react-native";
 import { useQueryClient } from "@tanstack/react-query";
 
+import { Message as IMessage } from "@/types/message";
+import { SPACING } from "@/styles";
 import { Message } from "../message";
 import { useInfiniteMessageList } from "../../hooks/use-infinite-message-list";
 import { socket } from "../../libs/socket-io";
-import { Message as IMessage } from "@/types/message";
-import { SPACING } from "@/styles";
 import { styles } from "./styles";
 
 interface Props {
@@ -23,6 +23,10 @@ export function MessageList({ id }: Props) {
     async function received(_: IMessage) {
       queryClient.invalidateQueries({
         queryKey: ["rooms", id, "messages"],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["rooms"],
       });
     }
 

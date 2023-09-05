@@ -4,10 +4,10 @@ import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 
 import { Input } from "@/components/input";
 import { Send } from "@/components/icons/send";
+import { COLORS } from "@/styles";
 import { socket } from "../../libs/socket-io";
 import { InfiniteMessageListResponse } from "../../hooks/use-infinite-message-list";
 import { styles } from "./styles";
-import { COLORS } from "@/styles";
 
 interface Props {
   id: string;
@@ -18,6 +18,7 @@ export function MessageComposer({ id }: Props) {
   const queryClient = useQueryClient();
 
   const handleSendMessage = async () => {
+    queryClient.invalidateQueries(["rooms"]);
     await queryClient.cancelQueries(["rooms", id, "messages"]);
 
     queryClient.setQueryData<InfiniteData<InfiniteMessageListResponse>>(
