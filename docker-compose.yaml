@@ -32,6 +32,21 @@ services:
       - "8000:8000"
     restart: unless-stopped
 
+  web:
+    image: sveltekit-web
+    container_name: thing-assistant-web
+    depends_on:
+      - backend
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    command: ["yarn", "run", "dev", "--host", "--port", "5000"]
+    volumes:
+      - ./web:/usr/src/app
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
 volumes:
   db:
     driver: local
