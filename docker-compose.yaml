@@ -24,7 +24,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: ["npm", "run", "start:dev"]
+    command: ["yarn", "run", "start:dev"]
     volumes:
       - ./backend:/usr/src/app
     ports:
