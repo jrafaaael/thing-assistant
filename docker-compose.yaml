@@ -1,16 +1,36 @@
 version: '3.5'
+
 services:
   postgres:
     image: ankane/pgvector:v0.4.4
-    ports:
-      - '5432:5432'
+    container_name: thing-assistant-postgres
+    env_file:
+      - ./backend/.env
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: thing-assistant
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - 5432:5432
     volumes:
       - db:/var/lib/postgresql/data
-    restart: always
+    restart: unless-stopped
+
+  backend:
+    image: nest-backend
+    container_name: thing-assistant-backend
+    depends_on:
+      - postgres
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: ["npm", "run", "start:dev"]
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - '3000:3000'
+      - '8000:8000'
+    restart: unless-stopped
 
 volumes:
   db:

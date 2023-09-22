@@ -22,42 +22,52 @@ eas login
 
 ### Run it!
 
-1. Clone the repo and install dependencies
+0. Clone the repo
 
 ```bash
 git clone git@github.com:jrafaaael/thing-assistant.git
 cd thing-assistant/
-yarn install
 ```
 
-2. Create `.env.*` files and populate with correct values
+#### Server
+
+1. Create `.env` file and populate with correct values
 
 ```bash
-cp backend/.env.example backend/.env && cp mobile/.env.example mobile/.env.local
+cp backend/.env.example backend/.env
 ```
 
-3. Create a development build **(if you already have xCode and Android Studio installed, you can use `--local` flag to build the project locally instead of Expo servers)**
-
-```bash
-yarn mobile:build:dev:android # or yarn mobile:build:dev:ios
-```
-
-4. Run the container
+2. Run containers
 
 ```bash
 docker compose up
 ```
 
-5. In a separate terminal, start the backend development server
+#### Mobile
+
+1. Install dependencies
 
 ```bash
-yarn backend:dev
+cd mobile/
+yarn install
 ```
 
-4. In a separate terminal, start the mobile development server
+2. Create `.env.local` file and populate with correct values
 
 ```bash
-yarn mobile:dev
+cp .env.example .env.local
+```
+
+3. Create a development build **(if you already have xCode and Android Studio installed, you can use `--local` flag to build the project locally instead of Expo servers)**
+
+```bash
+yarn mobile:build:dev:android # OR yarn mobile:build:dev:ios
+```
+
+4. Start the mobile development server
+
+```bash
+yarn start
 ```
 
 ## Features
