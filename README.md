@@ -87,7 +87,3 @@ yarn start
 - [ ] OCR for pdf files
 
 - [ ] Chat with multiple llm on-the-fly
-
-## Others
-
-- 🐋 Fix `Dockerfile`
