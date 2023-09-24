@@ -16,3 +16,7 @@
 	font-weight: 700, bold;
 	font-style: bold;
 }
+
+body {
+	@apply min-h-screen bg-neutral-800 text-neutral-50;
+}
