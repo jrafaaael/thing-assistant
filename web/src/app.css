@@ -17,6 +17,10 @@
 	font-style: bold;
 }
 
+* {
+	@apply [&]:[color-scheme:dark];
+}
+
 body {
 	@apply min-h-screen bg-neutral-800 text-neutral-50 overflow-y-scroll;
 }
