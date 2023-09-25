@@ -1,5 +1,5 @@
 import { PUBLIC_API_URL } from '$env/static/public';
-import { createQuery } from '@tanstack/svelte-query';
+import { createInfiniteQuery } from '@tanstack/svelte-query';
 
 export interface Message {
 	id: string;
@@ -32,7 +32,7 @@ async function getMessageList({
 }
 
 export function createInfiniteMessageList(roomId: string) {
-	return createQuery({
+	return createInfiniteQuery({
 		queryKey: ['rooms', roomId, 'messages'],
 		queryFn: ({ pageParam }) => getMessageList({ roomId, cursor: pageParam }),
 		getNextPageParam: (last) => last.metadata.nextCursor ?? undefined

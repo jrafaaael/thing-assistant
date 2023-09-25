@@ -1,24 +1,34 @@
 <script lang="ts">
 	import { afterUpdate } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
+	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
 	import { createInfiniteMessageList } from '../api/create-infinite-message-list';
 
 	export let id: string;
 	let bottomRef: HTMLSpanElement;
 
 	$: query = createInfiniteMessageList(id);
+	$: messages = $query.data?.pages.flatMap((data) => data.messages) ?? [];
 
 	afterUpdate(() => {
-		bottomRef.scrollIntoView();
+		// When user has fetched only one batch of messages, keep user at bottom of list
+		const pages = $query.data?.pages.length ?? 0;
+
+		if (pages <= 1) {
+			bottomRef.scrollIntoView();
+		}
 	});
 	afterNavigate(() => {
 		bottomRef.scrollIntoView();
 	});
 </script>
 
+<IntersectionObserver onIntersecting={() => $query.hasNextPage && $query.fetchNextPage()}>
+	<span />
+</IntersectionObserver>
 <ul class="w-full flex flex-col-reverse justify-end gap-6">
 	{#if $query.isSuccess}
-		{#each $query.data.messages as message}
+		{#each messages as message}
 			<li class="flex flex-col gap-1 {message.isFromAi ? 'items-start' : 'items-end'}">
 				<span class="font-bold text-neutral-400">{message.isFromAi ? 'Cohere' : 'You'}</span>
 				<div
