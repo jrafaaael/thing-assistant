@@ -1,4 +1,4 @@
-import { API_URL } from '$env/static/private';
+import { PUBLIC_API_URL } from '$env/static/public';
 
 interface Room {
 	id: string;
@@ -9,7 +9,7 @@ interface Room {
 }
 
 export async function load() {
-	const res = await fetch(`${API_URL}/rooms`);
+	const res = await fetch(`${PUBLIC_API_URL}/rooms`);
 	const data: Room[] = await res.json();
 
 	return { rooms: data };
