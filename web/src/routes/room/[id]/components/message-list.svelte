@@ -23,9 +23,10 @@
 	});
 </script>
 
-<IntersectionObserver onIntersecting={() => $query.hasNextPage && $query.fetchNextPage()}>
-	<span />
-</IntersectionObserver>
+<IntersectionObserver
+	top={'500%'}
+	onIntersecting={() => $query.hasNextPage && $query.fetchNextPage()}
+/>
 <ul class="w-full flex flex-col-reverse justify-end gap-6">
 	{#if $query.isSuccess}
 		{#each messages as message}
