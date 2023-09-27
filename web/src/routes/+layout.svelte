@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+	import Link from '$lib/components/link.svelte';
 	import { formatDate } from '$lib/utils/format-date';
 	import type { LayoutData } from './$types';
 	import '../app.css';
 
-	const queryClient = new QueryClient();
 	export let data: LayoutData;
+	const queryClient = new QueryClient();
 </script>
 
 <QueryClientProvider client={queryClient}>
@@ -13,7 +14,10 @@
 		<ul class="flex flex-col gap-2">
 			{#each data.rooms as room}
 				<li>
-					<a class="p-4 rounded-2xl flex flex-col gap-1 hover:bg-white/5" href="/room/{room.id}">
+					<Link
+						class="p-4 rounded-2xl flex flex-col gap-1 hover:bg-white/5 [&.active]:bg-white/10"
+						href="/room/{room.id}"
+					>
 						<div class="flex justify-between items-end gap-12">
 							<h6 class="line-clamp-1 break-all">
 								{room.name}
@@ -29,7 +33,7 @@
 							<span class="font-bold">{room.isFromAi ? 'Cohere' : 'You'}: </span>
 							<span>{room.lastMessageContent}</span>
 						</p>
-					</a>
+					</Link>
 				</li>
 			{/each}
 		</ul>
