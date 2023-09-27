@@ -5,7 +5,7 @@
 	import { createInfiniteMessageList } from '../api/create-infinite-message-list';
 
 	export let id: string;
-	let bottomRef: HTMLSpanElement;
+	let containerRef: HTMLDivElement;
 
 	$: query = createInfiniteMessageList(id);
 	$: messages = $query.data?.pages.flatMap((data) => data.messages) ?? [];
@@ -15,15 +15,19 @@
 		const pages = $query.data?.pages.length ?? 0;
 
 		if (pages <= 1) {
-			bottomRef.scrollIntoView();
+			containerRef.scrollTo({
+				top: containerRef.scrollHeight
+			});
 		}
 	});
 	afterNavigate(() => {
-		bottomRef.scrollIntoView();
+		containerRef.scrollTo({
+			top: containerRef.scrollHeight
+		});
 	});
 </script>
 
-<div class="h-full overflow-y-scroll pt-20">
+<div class="h-full overflow-y-scroll pt-20" bind:this={containerRef}>
 	<IntersectionObserver
 		top={'500%'}
 		onIntersecting={() => $query.hasNextPage && $query.fetchNextPage()}
@@ -44,5 +48,4 @@
 			{/each}
 		{/if}
 	</ul>
-	<span bind:this={bottomRef} id="bottom" />
 </div>
