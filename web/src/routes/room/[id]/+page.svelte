@@ -12,6 +12,8 @@
 >
 	<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
 </header>
-<section class="min-h-screen p-20 flex flex-col justify-end">
+<section
+	class="h-screen flex flex-col justify-end [&>*]:w-full [&>*]:max-w-3xl [&>*]:px-6 [&>*]:m-auto"
+>
 	<MessageList {id} />
 </section>

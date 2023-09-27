@@ -22,5 +22,5 @@
 }
 
 body {
-	@apply min-h-screen bg-neutral-800 text-neutral-50 overflow-y-scroll;
+	@apply min-h-screen bg-neutral-800 text-neutral-50;
 }
