@@ -28,7 +28,7 @@
 		top={'500%'}
 		onIntersecting={() => $query.hasNextPage && $query.fetchNextPage()}
 	/>
-	<ul class="w-full flex flex-col-reverse justify-end gap-6">
+	<ul class="w-full min-h-full mt-auto flex flex-col-reverse gap-6">
 		{#if $query.isSuccess}
 			{#each messages as message}
 				<li class="flex flex-col gap-1 {message.isFromAi ? 'items-start' : 'items-end'}">
