@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import MessageList from './components/message-list.svelte';
+	import MessageComposer from './components/message-composer.svelte';
 
 	export let data: PageData;
 
@@ -16,4 +17,5 @@
 	class="h-screen flex flex-col justify-end [&>*]:w-full [&>*]:max-w-3xl [&>*]:px-6 [&>*]:m-auto"
 >
 	<MessageList {id} />
+	<MessageComposer />
 </section>
