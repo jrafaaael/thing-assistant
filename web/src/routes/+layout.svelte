@@ -10,12 +10,12 @@
 </script>
 
 <QueryClientProvider client={queryClient}>
-	<aside class="max-w-md p-4 border-r-2 border-white/5 fixed inset-0 overflow-y-scroll">
-		<ul class="flex flex-col gap-2">
+	<aside class="max-w-md fixed inset-0 overflow-y-scroll">
+		<ul class="flex flex-col">
 			{#each data.rooms as room}
 				<li>
 					<Link
-						class="p-4 rounded-2xl flex flex-col gap-1 hover:bg-white/5 [&.active]:bg-white/10"
+						class="p-4 py-6 bg-neutral-900 border-b-2 border-x-4 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-transparent [&.active]:bg-transparent [&.active]:bg-gradient-to-r [&.active]:from-orange-hard/10 [&.active]:via-orange-hard/5 [&.active]:border-l-orange-hard"
 						href="/room/{room.id}"
 					>
 						<div class="flex justify-between items-end gap-12">
