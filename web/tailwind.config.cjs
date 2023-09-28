@@ -8,6 +8,11 @@ const config = {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', ...defaultTheme.fontFamily.sans]
+			},
+			colors: {
+				orange: {
+					hard: '#FF2E00'
+				}
 			}
 		}
 	},
