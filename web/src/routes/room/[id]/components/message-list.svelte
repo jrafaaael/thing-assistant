@@ -1,15 +1,35 @@
 <script lang="ts">
-	import { afterUpdate } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
+	import { useQueryClient } from '@tanstack/svelte-query';
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
 	import { createInfiniteMessageList } from '../api/create-infinite-message-list';
+	import { socket } from '../libs/socket-io';
 
 	export let id: string;
 	let containerRef: HTMLDivElement;
+	let queryClient = useQueryClient();
 
 	$: query = createInfiniteMessageList(id);
 	$: messages = $query.data?.pages.flatMap((data) => data.messages) ?? [];
 
+	onMount(() => {
+		async function received() {
+			queryClient.invalidateQueries({
+				queryKey: ['rooms', id, 'messages']
+			});
+
+			queryClient.invalidateQueries({
+				queryKey: ['rooms']
+			});
+		}
+
+		socket.on('message.generated', received);
+
+		return () => {
+			socket.off('message.generated', received);
+		};
+	});
 	afterUpdate(() => {
 		// When user has fetched only one batch of messages, keep user at bottom of list
 		const pages = $query.data?.pages.length ?? 0;
