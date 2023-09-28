@@ -13,9 +13,7 @@
 >
 	<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
 </header>
-<section
-	class="h-screen flex flex-col justify-end [&>*]:w-full [&>*]:max-w-3xl [&>*]:px-6 [&>*]:m-auto"
->
+<section class="h-screen flex flex-col justify-end [&>*]:px-6">
 	<MessageList {id} />
 	<MessageComposer />
 </section>
