@@ -58,7 +58,7 @@
 				<li class="flex flex-col gap-1 {message.isFromAi ? 'items-start' : 'items-end'}">
 					<span class="font-bold text-neutral-400">{message.isFromAi ? 'Cohere' : 'You'}</span>
 					<div
-						class="max-w-[65%] py-2 px-4 rounded-3xl {message.isFromAi
+						class="max-w-[70%] py-2 px-4 rounded-3xl {message.isFromAi
 							? 'bg-blue-600 rounded-tl-[4px]'
 							: 'bg-neutral-700 rounded-tr-[4px]'}"
 					>
