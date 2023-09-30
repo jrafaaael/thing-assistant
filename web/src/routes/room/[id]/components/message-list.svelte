@@ -50,6 +50,7 @@
 <div class="w-full h-full overflow-y-scroll pt-20" bind:this={containerRef}>
 	<IntersectionObserver
 		top={'500%'}
+		root="parent"
 		onIntersecting={() => $query.hasNextPage && $query.fetchNextPage()}
 	/>
 	<ul class="w-full max-w-3xl min-h-full mx-auto mt-auto flex flex-col-reverse gap-6">

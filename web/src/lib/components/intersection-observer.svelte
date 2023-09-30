@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	export let root: Element | 'parent' | null = null;
 	export let top = '0px';
 	export let right = '0px';
 	export let bottom = '0px';
@@ -19,7 +20,10 @@
 					}
 				});
 			},
-			{ rootMargin }
+			{
+				root: root === 'parent' ? containerRef.parentElement : root,
+				rootMargin
+			}
 		);
 
 		observer.observe(containerRef);
