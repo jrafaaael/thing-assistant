@@ -62,7 +62,17 @@
 							? 'bg-blue-600 rounded-tl-[4px]'
 							: 'bg-neutral-700 rounded-tr-[4px]'}"
 					>
-						<p>{message.content}</p>
+						<span>{message.content}</span>
+						<time
+							class="ml-3 mt-[6px] text-xs inline-block float-right {!message.isFromAi
+								? 'text-white/70'
+								: ''}"
+							datetime={new Date(message.createdAt).toLocaleString()}
+							>{new Date(message.createdAt).toLocaleString(undefined, {
+								hour: '2-digit',
+								minute: '2-digit'
+							})}</time
+						>
 					</div>
 				</li>
 			{/each}
