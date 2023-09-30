@@ -24,7 +24,7 @@
 							</h6>
 							<time
 								class="text-sm text-neutral-400"
-								datetime={new Date(room.updatedAt).getTime().toString(10)}
+								datetime={new Date(room.updatedAt).toLocaleString()}
 							>
 								{formatDate(new Date(room.updatedAt))}
 							</time>
