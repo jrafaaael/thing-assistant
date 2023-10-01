@@ -15,7 +15,7 @@
 			{#each data.rooms as room}
 				<li>
 					<Link
-						class="p-4 py-6 border-b-2 border-x-4 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-neutral-800 [&.active]:bg-neutral-800 [&.active]:bg-gradient-to-r [&.active]:from-orange-hard/10 [&.active]:via-orange-hard/5 [&.active]:border-l-orange-hard"
+						class="p-4 py-6 border-b-2 border-x-4 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-neutral-800 [&.active]:bg-neutral-800 [&.active]:border-l-orange-hard"
 						href="/room/{room.id}"
 					>
 						<div class="flex justify-between items-end gap-12">
