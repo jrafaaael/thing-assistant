@@ -10,6 +10,10 @@
 	$: id = $page.params.id;
 
 	function handleSendMessage() {
+		if (message.length <= 0) {
+			return;
+		}
+
 		socket.emit('message.new', { content: message, roomId: id });
 
 		queryClient.invalidateQueries({
