@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { afterUpdate, onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import { afterNavigate } from '$app/navigation';
 	import { useQueryClient } from '@tanstack/svelte-query';
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
 	import { createInfiniteMessageList } from '../api/create-infinite-message-list';
 	import { socket } from '../libs/socket-io';
 
-	export let id: string;
 	let containerRef: HTMLDivElement;
 	let queryClient = useQueryClient();
 
+	$: id = $page.params.id;
 	$: query = createInfiniteMessageList(id);
 	$: messages = $query.data?.pages.flatMap((data) => data.messages) ?? [];
 
