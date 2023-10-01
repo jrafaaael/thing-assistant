@@ -56,11 +56,7 @@
 	<ul class="w-full max-w-3xl min-h-full mx-auto mt-auto flex flex-col-reverse gap-6">
 		{#if $query.isSuccess}
 			{#each messages as message}
-				<li
-					class="flex flex-col gap-1 relative -z-20 {message.isFromAi
-						? 'items-start'
-						: 'items-end'}"
-				>
+				<li class="flex flex-col gap-1 {message.isFromAi ? 'items-start' : 'items-end'}">
 					<span class="font-bold text-neutral-400">{message.isFromAi ? 'Cohere' : 'You'}</span>
 					<div
 						class="max-w-[70%] py-2 px-4 rounded-3xl {message.isFromAi
