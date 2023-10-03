@@ -6,8 +6,8 @@
 	import { createRoom } from '../libs/query/create-room';
 
 	let inputRef: HTMLInputElement;
-	let rooms = $page.data.rooms;
 	let query = createRoom();
+	$: rooms = $page.data.rooms;
 
 	function handleSelectFile() {
 		inputRef.click();
