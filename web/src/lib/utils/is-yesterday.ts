@@ -3,8 +3,8 @@ export function isYesterday(date: Date) {
 	yesterday.setDate(yesterday.getDate() - 1);
 
 	return (
-		date.getUTCDate() === yesterday.getUTCDate() &&
-		date.getUTCMonth() === yesterday.getUTCMonth() &&
-		date.getUTCFullYear() === yesterday.getUTCFullYear()
+		date.getDate() === yesterday.getDate() &&
+		date.getMonth() === yesterday.getMonth() &&
+		date.getFullYear() === yesterday.getFullYear()
 	);
 }
