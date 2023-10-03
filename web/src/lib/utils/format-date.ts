@@ -24,6 +24,6 @@ export function formatDate(date: Date) {
 	return date.toLocaleString(undefined, {
 		year: 'numeric',
 		month: '2-digit',
-		day: 'numeric'
+		day: '2-digit'
 	});
 }
