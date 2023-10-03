@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+	import UploadFile from './layout/components/upload-file.svelte';
 	import RoomList from './layout/components/room-list.svelte';
 	import '../app.css';
 
@@ -7,7 +8,10 @@
 </script>
 
 <QueryClientProvider client={queryClient}>
-	<RoomList />
+	<aside class="max-w-md bg-neutral-900 fixed inset-0 overflow-y-scroll">
+		<UploadFile />
+		<RoomList />
+	</aside>
 	<main class="ml-[28rem]">
 		<slot />
 	</main>

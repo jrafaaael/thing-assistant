@@ -1,79 +1,34 @@
 <script lang="ts">
-	import { invalidate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import Link from '$lib/components/link.svelte';
 	import { formatDate } from '$lib/utils/format-date';
-	import { createRoom } from '../libs/query/create-room';
 
-	let inputRef: HTMLInputElement;
-	let query = createRoom();
 	$: rooms = $page.data.rooms;
-
-	function handleSelectFile() {
-		inputRef.click();
-	}
-
-	function handleUploadFile() {
-		const files = inputRef.files;
-
-		if ((files?.length ?? 0) <= 0) {
-			return;
-		}
-
-		const first = files?.item(0)!;
-		$query.mutate(first, {
-			onSuccess() {
-				invalidate('layout:rooms');
-			}
-		});
-	}
 </script>
 
-<aside class="max-w-md bg-neutral-900 fixed inset-0 overflow-y-scroll">
-	<header
-		class="h-[70px] px-4 border-b-2 border-x-4 border-transparent border-b-white/10 flex justify-between items-center gap-10"
-	>
-		<h2 class="text-xl font-bold">Chats</h2>
-		<button
-			class="p-1 px-2 bg-orange-hard rounded-md text-sm transition active:scale-[0.97]"
-			on:click={handleSelectFile}
-		>
-			New chat
-		</button>
-		<input
-			type="file"
-			name="file"
-			id="file"
-			accept=".pdf"
-			class="hidden"
-			bind:this={inputRef}
-			on:change={handleUploadFile}
-		/>
-	</header>
-	<ul class="flex flex-col">
-		{#each rooms as room}
-			<li>
-				<Link
-					class="p-4 border-b-2 border-x-4 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-neutral-800 [&.active]:bg-neutral-800 [&.active]:border-l-orange-hard"
-					href="/room/{room.id}"
-				>
-					<div class="flex justify-between items-end gap-12">
-						<h6 class="line-clamp-1 break-all">
-							{room.name}
-						</h6>
-						<time
-							class="text-sm text-neutral-400"
-							datetime={new Date(room.updatedAt).toLocaleString()}
-						>
-							{formatDate(new Date(room.updatedAt))}
-						</time>
-					</div>
-					<p class="text-sm text-neutral-400 line-clamp-1">
-						<span class="font-bold">{room.isFromAi ? 'Cohere' : 'You'}: </span>
-						<span>{room.lastMessageContent}</span>
-					</p>
-				</Link>
-			</li>
-		{/each}
-	</ul>
-</aside>
+<ul class="flex flex-col">
+	{#each rooms as room}
+		<li>
+			<Link
+				class="p-4 border-b-2 border-x-4 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-neutral-800 [&.active]:bg-neutral-800 [&.active]:border-l-orange-hard"
+				href="/room/{room.id}"
+			>
+				<div class="flex justify-between items-end gap-12">
+					<h6 class="line-clamp-1 break-all">
+						{room.name}
+					</h6>
+					<time
+						class="text-sm text-neutral-400"
+						datetime={new Date(room.updatedAt).toLocaleString()}
+					>
+						{formatDate(new Date(room.updatedAt))}
+					</time>
+				</div>
+				<p class="text-sm text-neutral-400 line-clamp-1">
+					<span class="font-bold">{room.isFromAi ? 'Cohere' : 'You'}: </span>
+					<span>{room.lastMessageContent}</span>
+				</p>
+			</Link>
+		</li>
+	{/each}
+</ul>
