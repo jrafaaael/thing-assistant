@@ -4,7 +4,7 @@
 </script>
 
 <header
-	class="w-[calc(100%-28rem)] h-16 bg-neutral-800/50 border-b-2 border-white/10 flex justify-center items-center fixed right-0 backdrop-blur-[2px]"
+	class="w-[calc(100%-28rem)] h-[70px] bg-neutral-800/50 border-b-2 border-white/10 flex justify-center items-center fixed right-0 backdrop-blur-[2px]"
 >
 	<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
 </header>

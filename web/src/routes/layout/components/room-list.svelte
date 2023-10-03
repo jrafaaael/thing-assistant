@@ -31,7 +31,7 @@
 
 <aside class="max-w-md bg-neutral-900 fixed inset-0 overflow-y-scroll">
 	<header
-		class="p-4 py-6 border-b-2 border-x-4 border-transparent border-b-white/10 flex justify-between items-end gap-10"
+		class="h-[70px] px-4 border-b-2 border-x-4 border-transparent border-b-white/10 flex justify-between items-center gap-10"
 	>
 		<h2 class="text-xl font-bold">Chats</h2>
 		<button
