@@ -8,9 +8,11 @@ interface Room {
 	lastMessageContent: string | null;
 }
 
-export async function load({ fetch }) {
+export async function load({ fetch, depends }) {
 	const res = await fetch(`${PUBLIC_API_URL}/rooms`);
 	const data: Room[] = await res.json();
+
+	depends('layout:rooms');
 
 	return { rooms: data };
 }

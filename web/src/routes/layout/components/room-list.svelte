@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import Link from '$lib/components/link.svelte';
 	import { formatDate } from '$lib/utils/format-date';
@@ -20,7 +21,11 @@
 		}
 
 		const first = files?.item(0)!;
-		$query.mutate(first);
+		$query.mutate(first, {
+			onSuccess() {
+				invalidate('layout:rooms');
+			}
+		});
 	}
 </script>
 
