@@ -8,7 +8,7 @@ interface Room {
 	lastMessageContent: string | null;
 }
 
-export async function load() {
+export async function load({ fetch }) {
 	const res = await fetch(`${PUBLIC_API_URL}/rooms`);
 	const data: Room[] = await res.json();
 
