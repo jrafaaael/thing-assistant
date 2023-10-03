@@ -4,7 +4,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { useQueryClient } from '@tanstack/svelte-query';
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
-	import { createInfiniteMessageList } from '../api/create-infinite-message-list';
+	import { createInfiniteMessageList } from '../libs/query/create-infinite-message-list';
 	import { socket } from '../libs/socket-io';
 
 	let containerRef: HTMLDivElement;
