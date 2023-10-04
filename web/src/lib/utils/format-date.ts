@@ -1,5 +1,4 @@
 import { isToday } from './is-today';
-import { isYesterday } from './is-yesterday';
 import { isDateInCurrentWeek } from './is-date-in-current-week';
 import { isDateInCurrentYear } from './is-date-in-current-year';
 
@@ -12,10 +11,6 @@ export function formatDate(date: Date) {
 			hour: '2-digit',
 			minute: '2-digit'
 		});
-	}
-
-	if (isYesterday(date)) {
-		return 'Yesterday';
 	}
 
 	if (isDateInCurrentWeek(date)) {
