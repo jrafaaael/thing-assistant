@@ -14,7 +14,7 @@
 				href="/room/{room.id}"
 			>
 				<div class="flex justify-between items-end gap-12">
-					<h6 class="line-clamp-1 break-all">
+					<h6 class="line-clamp-1 break-all flex-1">
 						{room.name}
 					</h6>
 					<time
