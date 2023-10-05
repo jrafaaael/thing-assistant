@@ -24,11 +24,8 @@
 	}
 </script>
 
-<div class="w-full pb-6 pt-3">
-	<form
-		class="w-full max-w-3xl mx-auto flex items-end gap-4"
-		on:submit|preventDefault={handleSendMessage}
-	>
+<div class="w-full max-w-3xl mx-auto px-6 pb-6 pt-3">
+	<form class="w-full flex items-end gap-4" on:submit|preventDefault={handleSendMessage}>
 		<Input
 			name="message"
 			id="message"

@@ -6,7 +6,7 @@
 
 <section class="h-screen flex flex-col justify-end">
 	<MessageList />
-	<div class="px-6 {browser ? 'block' : 'hidden [@media(hover:hover)]:block'}">
+	<div class={browser ? 'block' : 'hidden [@media(hover:hover)]:block'}>
 		<MessageComposer />
 	</div>
 </section>
