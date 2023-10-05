@@ -72,7 +72,8 @@
 							datetime={new Date(message.createdAt).toLocaleString()}
 							>{new Date(message.createdAt).toLocaleString(undefined, {
 								hour: '2-digit',
-								minute: '2-digit'
+								minute: '2-digit',
+								hour12: true
 							})}</time
 						>
 					</div>
