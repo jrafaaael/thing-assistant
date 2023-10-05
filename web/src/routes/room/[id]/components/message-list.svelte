@@ -48,13 +48,18 @@
 	});
 </script>
 
-<div class="w-full h-full overflow-y-scroll pt-20" bind:this={containerRef}>
+<div class="w-full h-full relative overflow-y-scroll" bind:this={containerRef}>
+	<header
+		class="w-full h-14 mb-8 bg-neutral-800/50 border-b-2 border-white/10 flex justify-center items-center sticky top-0 right-0 backdrop-blur-[2px] md:h-[70px]"
+	>
+		<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
+	</header>
 	<IntersectionObserver
 		top={'1000px'}
 		root="parent"
 		onIntersecting={() => $query.hasNextPage && $query.fetchNextPage()}
 	/>
-	<ul class="w-full max-w-3xl min-h-full mx-auto mt-auto flex flex-col-reverse gap-6">
+	<ul class="w-full max-w-3xl min-h-full mx-auto mt-auto px-6 flex flex-col-reverse gap-6">
 		{#if $query.isSuccess}
 			{#each messages as message}
 				<li class="flex flex-col gap-1 {message.isFromAi ? 'items-start' : 'items-end'}">
