@@ -24,7 +24,7 @@
 	}
 </script>
 
-<div class="w-full py-6">
+<div class="w-full pb-6 pt-3">
 	<form
 		class="w-full max-w-3xl mx-auto flex items-end gap-4"
 		on:submit|preventDefault={handleSendMessage}
