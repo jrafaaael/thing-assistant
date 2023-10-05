@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import MessageList from './components/message-list.svelte';
 	import MessageComposer from './components/message-composer.svelte';
 </script>
@@ -10,5 +11,7 @@
 </header>
 <section class="h-screen flex flex-col justify-end [&>*]:px-6">
 	<MessageList />
-	<MessageComposer />
+	<div class={browser ? 'block' : 'hidden [@media(hover:hover)]:block'}>
+		<MessageComposer />
+	</div>
 </section>
