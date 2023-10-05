@@ -19,7 +19,9 @@
 	<div
 		class="grid {isIndex ? 'grid-cols-[auto,1fr]' : 'grid-cols-[0,auto]'} md:grid-cols-[auto,1fr]"
 	>
-		<aside class="w-full max-h-screen bg-neutral-900 overflow-y-scroll sm:max-w-xs lg:max-w-md">
+		<aside
+			class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll sm:max-w-xs lg:max-w-md"
+		>
 			<UploadFile />
 			<RoomList />
 		</aside>
