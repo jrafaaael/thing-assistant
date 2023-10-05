@@ -21,6 +21,11 @@
 	@apply [&]:[color-scheme:dark];
 }
 
+html,
 body {
-	@apply min-h-screen bg-neutral-800 text-neutral-50;
+	@apply h-screen overflow-y-hidden;
+}
+
+body {
+	@apply bg-neutral-800 text-neutral-50;
 }

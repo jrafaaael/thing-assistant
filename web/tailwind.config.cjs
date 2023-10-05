@@ -13,6 +13,14 @@ const config = {
 				orange: {
 					hard: '#FF2E00'
 				}
+			},
+			height: {
+				...defaultTheme.height,
+				screen: 'calc(var(--vh,1vh)*100)'
+			},
+			maxHeight: {
+				...defaultTheme.maxHeight,
+				screen: 'calc(var(--vh,1vh)*100)'
 			}
 		}
 	},
