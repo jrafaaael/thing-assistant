@@ -11,6 +11,11 @@
 	const queryClient = new QueryClient();
 	$: isIndex = $page.route.id === '/';
 
+	function handleResize() {
+		const vh = window.innerHeight / 100;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+	}
+
 	onMount(() => {
 		const vh = window.innerHeight / 100;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -19,6 +24,8 @@
 		sidebar.open();
 	});
 </script>
+
+<svelte:window on:resize={handleResize} />
 
 <QueryClientProvider client={queryClient}>
 	<div
