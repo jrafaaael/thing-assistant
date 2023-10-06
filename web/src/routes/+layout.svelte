@@ -21,7 +21,7 @@
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 	});
 	onNavigate(() => {
-		sidebar.open();
+		sidebar.close();
 	});
 </script>
 

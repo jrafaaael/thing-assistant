@@ -6,6 +6,7 @@ export function showSidebar() {
 	return {
 		subscribe,
 		open: () => set(true),
+		close: () => set(false),
 		toggle: () => update((value) => !value)
 	};
 }
