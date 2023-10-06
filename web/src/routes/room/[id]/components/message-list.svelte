@@ -4,6 +4,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { useQueryClient } from '@tanstack/svelte-query';
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
+	import Menu from '$lib/components/icons/menu.svelte';
 	import { sidebar } from '$lib/stores/show-sidebar.store';
 	import { createInfiniteMessageList } from '../libs/query/create-infinite-message-list';
 	import { socket } from '../libs/socket-io';
@@ -58,9 +59,13 @@
 	>
 		<div class="w-full flex justify-center items-center relative">
 			<button
-				class="absolute left-0 top-0 hidden sm:block lg:hidden"
-				on:click={() => sidebar.toggle()}>Show</button
+				class="p-3 absolute top-1/2 left-3 hidden -translate-y-1/2 sm:block lg:hidden"
+				on:click={() => sidebar.toggle()}
 			>
+				<div class="h-6 aspect-square">
+					<Menu />
+				</div>
+			</button>
 			<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
 		</div>
 	</header>
