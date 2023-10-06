@@ -1,4 +1,11 @@
-<svg fill="none" stroke="currentColor" stroke-width={2} viewBox="0 0 24 24" {...$$restProps}>
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	fill="none"
+	stroke="currentColor"
+	stroke-width="2"
+	viewBox="0 0 24 24"
+	{...$$restProps}
+>
 	<path
 		stroke-linecap="round"
 		stroke-linejoin="round"
