@@ -4,6 +4,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { useQueryClient } from '@tanstack/svelte-query';
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
+	import { showSidebar } from '$lib/stores/show-sidebar.store';
 	import { createInfiniteMessageList } from '../libs/query/create-infinite-message-list';
 	import { socket } from '../libs/socket-io';
 
@@ -55,7 +56,13 @@
 	<header
 		class="w-full h-14 mb-4 bg-neutral-800/50 border-b-2 border-white/10 flex justify-center items-center sticky top-0 right-0 backdrop-blur-[2px] [@media(hover:hover)]:w-[104%] md:h-[70px]"
 	>
-		<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
+		<div class="w-full flex justify-center items-center relative">
+			<button
+				class="absolute left-0 top-0 hidden md:block lg:hidden"
+				on:click={() => showSidebar.toggle()}>Show</button
+			>
+			<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
+		</div>
 	</header>
 	<IntersectionObserver
 		top={'1000px'}
