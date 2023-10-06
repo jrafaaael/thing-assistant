@@ -27,7 +27,7 @@
 			: 'grid-cols-[0,auto] sm:grid-cols-[auto,auto]'} lg:grid lg:grid-cols-[auto,1fr]"
 	>
 		<aside
-			class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll sm:min-w-[50vw] sm:transition lg:min-w-0 lg:max-w-sm lg:transition-none lg:translate-x-0 xl:max-w-md {$sidebar
+			class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll sm:min-w-[min(60vw,28rem)] sm:transition lg:min-w-0 lg:max-w-md lg:transition-none lg:translate-x-0 {$sidebar
 				? 'sm:translate-x-0'
 				: 'sm:-translate-x-1/2'}"
 		>
@@ -37,7 +37,7 @@
 		<main
 			class="bg-neutral-800 sm:w-screen sm:transition lg:w-full lg:transition-none lg:translate-x-0 {$sidebar
 				? 'sm:translate-x-0'
-				: 'sm:-translate-x-1/2'}"
+				: 'sm:-translate-x-[min(60vw,28rem)]'}"
 		>
 			<slot />
 		</main>
