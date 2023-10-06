@@ -40,7 +40,7 @@
 		name="file"
 		id="file"
 		accept=".pdf"
-		class="hidden"
+		class="sr-only"
 		bind:this={inputRef}
 		on:change={handleUploadFile}
 	/>
