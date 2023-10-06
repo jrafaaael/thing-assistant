@@ -28,13 +28,9 @@
 <svelte:window on:resize={handleResize} />
 
 <QueryClientProvider client={queryClient}>
-	<div
-		class="grid {isIndex
-			? 'grid-cols-[auto,1fr]'
-			: 'grid-cols-[0,auto] sm:grid-cols-[auto,auto]'} lg:grid-cols-[auto,1fr]"
-	>
+	<div class="grid {isIndex ? 'grid-cols-[auto,0]' : 'grid-cols-[0,auto]'} sm:grid-cols-[auto,1fr]">
 		<aside
-			class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll sm:min-w-[min(60vw,28rem)] sm:transition lg:min-w-0 lg:max-w-md lg:transition-none lg:translate-x-0 {$sidebar
+			class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll sm:min-w-[min(60vw,28rem)] sm:max-w-md sm:transition lg:min-w-0 lg:transition-none lg:translate-x-0 {$sidebar
 				? 'sm:translate-x-0'
 				: 'sm:-translate-x-1/2'}"
 		>
@@ -42,9 +38,9 @@
 			<RoomList />
 		</aside>
 		<main
-			class="bg-neutral-800 sm:w-screen sm:transition lg:w-full lg:transition-none lg:translate-x-0 {$sidebar
-				? 'sm:translate-x-0'
-				: 'sm:-translate-x-[min(60vw,28rem)]'}"
+			class="bg-neutral-800 w-full sm:transition lg:w-full lg:transition-none lg:translate-x-0 {!isIndex
+				? 'sm:w-screen'
+				: ''} {$sidebar ? 'sm:translate-x-0' : 'sm:-translate-x-[min(60vw,28rem)]'}"
 		>
 			<slot />
 		</main>
