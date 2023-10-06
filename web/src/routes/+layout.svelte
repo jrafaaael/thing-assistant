@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { slide } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import { onNavigate } from '$app/navigation';
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
-	import { showSidebar } from '$lib/stores/show-sidebar.store';
+	import { sidebar } from '$lib/stores/show-sidebar.store';
 	import UploadFile from './layout/components/upload-file.svelte';
 	import RoomList from './layout/components/room-list.svelte';
 	import '../app.css';
@@ -17,26 +16,29 @@
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 	});
 	onNavigate(() => {
-		showSidebar.open();
+		sidebar.open();
 	});
 </script>
 
 <QueryClientProvider client={queryClient}>
 	<div
-		class="grid {isIndex ? 'grid-cols-[auto,1fr]' : 'grid-cols-[0,auto]'} md:grid-cols-[auto,1fr]"
+		class="grid {isIndex
+			? 'grid-cols-[auto,1fr]'
+			: 'grid-cols-[0,auto] sm:grid-cols-[auto,auto]'} lg:grid lg:grid-cols-[auto,1fr]"
 	>
-		{#if $showSidebar || isIndex}
-			<aside
-				class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll lg:max-w-sm xl:max-w-md {isIndex
-					? 'sm:max-w-sm'
-					: 'sm:max-w-xs'}"
-				transition:slide={{ axis: 'x' }}
-			>
-				<UploadFile />
-				<RoomList />
-			</aside>
-		{/if}
-		<main>
+		<aside
+			class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll sm:min-w-[50vw] sm:transition lg:min-w-0 lg:max-w-sm lg:transition-none lg:translate-x-0 xl:max-w-md {$sidebar
+				? 'sm:translate-x-0'
+				: 'sm:-translate-x-1/2'}"
+		>
+			<UploadFile />
+			<RoomList />
+		</aside>
+		<main
+			class="bg-neutral-800 sm:w-screen sm:transition lg:w-full lg:transition-none lg:translate-x-0 {$sidebar
+				? 'sm:translate-x-0'
+				: 'sm:-translate-x-1/2'}"
+		>
 			<slot />
 		</main>
 	</div>

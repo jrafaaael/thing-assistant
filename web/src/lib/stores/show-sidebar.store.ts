@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export function showSidebarStore() {
+export function showSidebar() {
 	const { subscribe, update, set } = writable(true);
 
 	return {
@@ -10,4 +10,4 @@ export function showSidebarStore() {
 	};
 }
 
-export const showSidebar = showSidebarStore();
+export const sidebar = showSidebar();
