@@ -31,7 +31,7 @@
 	<div
 		class="grid {isIndex
 			? 'grid-cols-[auto,1fr]'
-			: 'grid-cols-[0,auto] sm:grid-cols-[auto,auto]'} lg:grid lg:grid-cols-[auto,1fr]"
+			: 'grid-cols-[0,auto] sm:grid-cols-[auto,auto]'} lg:grid-cols-[auto,1fr]"
 	>
 		<aside
 			class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll sm:min-w-[min(60vw,28rem)] sm:transition lg:min-w-0 lg:max-w-md lg:transition-none lg:translate-x-0 {$sidebar
