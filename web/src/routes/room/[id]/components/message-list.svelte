@@ -53,7 +53,7 @@
 	bind:this={containerRef}
 >
 	<header
-		class="w-full h-14 mb-4 bg-neutral-800/50 border-b-2 border-white/10 flex justify-center items-center sticky top-0 right-0 backdrop-blur-[2px] [@media(hover:hover)]:sm:w-[102%] md:h-[70px]"
+		class="w-full h-14 mb-4 bg-neutral-800/50 border-b-2 border-white/10 flex justify-center items-center sticky top-0 right-0 backdrop-blur-[2px] [@media(hover:hover)]:w-[104%] md:h-[70px]"
 	>
 		<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
 	</header>
