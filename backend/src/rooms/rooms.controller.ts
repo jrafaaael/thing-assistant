@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Param,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -15,6 +16,11 @@ export class RoomsController {
   @Get()
   async getAll() {
     return await this.roomsService.getAll();
+  }
+
+  @Get(':id')
+  async getRoomById(@Param('id') id: string) {
+    return await this.roomsService.getRoomById(id);
   }
 
   @Post('ingest')
