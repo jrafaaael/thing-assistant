@@ -21,7 +21,7 @@ export interface InfiniteMessageListResponse {
 	};
 }
 
-async function getMessageList({
+async function getMessages({
 	roomId,
 	cursor = -1
 }: GetMessageListParams): Promise<InfiniteMessageListResponse> {
@@ -31,10 +31,10 @@ async function getMessageList({
 	return data;
 }
 
-export function createInfiniteMessageList(roomId: string) {
+export function getInfiniteMessageList(roomId: string) {
 	return createInfiniteQuery({
 		queryKey: ['rooms', roomId, 'messages'],
-		queryFn: ({ pageParam }) => getMessageList({ roomId, cursor: pageParam }),
+		queryFn: ({ pageParam }) => getMessages({ roomId, cursor: pageParam }),
 		getNextPageParam: (last) => last.metadata.nextCursor ?? undefined
 	});
 }

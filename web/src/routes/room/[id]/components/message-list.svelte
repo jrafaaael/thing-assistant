@@ -6,14 +6,14 @@
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
 	import Menu from '$lib/components/icons/menu.svelte';
 	import { sidebar } from '$lib/stores/show-sidebar.store';
-	import { createInfiniteMessageList } from '../libs/query/create-infinite-message-list';
+	import { getInfiniteMessageList } from '../libs/query/read-infinite-message-list';
 	import { socket } from '../libs/socket-io';
 
 	let containerRef: HTMLDivElement;
 	let queryClient = useQueryClient();
 
 	$: id = $page.params.id;
-	$: query = createInfiniteMessageList(id);
+	$: query = getInfiniteMessageList(id);
 	$: messages = $query.data?.pages.flatMap((data) => data.messages) ?? [];
 
 	onMount(() => {
