@@ -1,5 +1,10 @@
-export async function load({ params }) {
-	const id = params.id;
+import { PUBLIC_API_URL } from '$env/static/public';
+import type { Room } from '$lib/types/room.js';
 
-	return { id };
+export async function load({ params, fetch }) {
+	const id = params.id;
+	const res = await fetch(`${PUBLIC_API_URL}/rooms/${id}`);
+	const room: Room = await res.json();
+
+	return { room };
 }

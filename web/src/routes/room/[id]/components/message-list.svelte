@@ -9,6 +9,7 @@
 	import { getInfiniteMessageList } from '../libs/query/read-infinite-message-list';
 	import { socket } from '../libs/socket-io';
 
+	export let title: string;
 	let containerRef: HTMLDivElement;
 	let queryClient = useQueryClient();
 
@@ -66,7 +67,7 @@
 					<Menu />
 				</div>
 			</button>
-			<h2 class="text-2xl font-bold">ldfsdjflajlfjdl</h2>
+			<h2 class="text-2xl font-bold">{title}</h2>
 		</div>
 	</header>
 	<IntersectionObserver
