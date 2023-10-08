@@ -52,11 +52,11 @@
 </script>
 
 <div
-	class="w-full h-full relative overflow-y-scroll overflow-x-hidden [&]:[scrollbar-gutter:stable_both-edges]"
+	class="w-full h-full flex flex-col relative overflow-y-scroll overflow-x-hidden [&]:[scrollbar-gutter:stable_both-edges]"
 	bind:this={containerRef}
 >
 	<header
-		class="w-full h-14 mb-4 bg-neutral-800/50 border-b-2 border-white/10 flex justify-center items-center sticky top-0 right-0 backdrop-blur-[2px] [@media(hover:hover)]:w-[104%] md:h-[70px]"
+		class="w-full h-14 mb-4 bg-neutral-800/50 border-b-2 border-white/10 shrink-0 flex justify-center items-center sticky top-0 right-0 backdrop-blur-[2px] [@media(hover:hover)]:w-[104%] md:h-[70px]"
 	>
 		<div class="w-full flex justify-center items-center relative">
 			<button
