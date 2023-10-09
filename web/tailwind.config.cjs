@@ -21,6 +21,10 @@ const config = {
 			maxHeight: {
 				...defaultTheme.maxHeight,
 				screen: 'calc(var(--vh,1vh)*100)'
+			},
+			minHeight: {
+				...defaultTheme.minHeight,
+				screen: 'calc(var(--vh,1vh)*100)'
 			}
 		}
 	},

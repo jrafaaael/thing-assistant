@@ -29,7 +29,7 @@
 <QueryClientProvider client={queryClient}>
 	<div class="grid {isIndex ? 'grid-cols-[auto,0]' : 'grid-cols-[0,auto]'} sm:grid-cols-[auto,1fr]">
 		<aside
-			class="w-full max-h-screen bg-neutral-900 relative overflow-y-scroll sm:min-w-[min(60vw,28rem)] sm:max-w-md sm:transition lg:min-w-0 lg:transition-none lg:translate-x-0 {$sidebar ||
+			class="w-full min-h-screen max-h-screen bg-neutral-900 relative overflow-y-scroll sm:min-w-[min(60vw,28rem)] sm:max-w-md sm:transition lg:min-w-[28rem] lg:transition-none lg:translate-x-0 {$sidebar ||
 			isIndex
 				? 'sm:translate-x-0'
 				: 'sm:-translate-x-1/2'}"
