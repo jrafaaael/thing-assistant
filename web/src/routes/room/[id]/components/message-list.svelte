@@ -6,7 +6,7 @@
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
 	import Menu from '$lib/components/icons/menu.svelte';
 	import { sidebar } from '$lib/stores/show-sidebar.store';
-	import { getInfiniteMessageList } from '../libs/query/read-infinite-message-list';
+	import { getInfiniteMessageList } from '../libs/query/get-infinite-message-list';
 	import { socket } from '../libs/socket-io';
 
 	export let title: string;
