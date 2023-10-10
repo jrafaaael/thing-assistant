@@ -1,9 +1,20 @@
 <script lang="ts">
+	import { tick } from 'svelte';
 	import { invalidate } from '$app/navigation';
 	import { createRoom } from '../libs/query/create-room';
+	import { uploadQueue } from '../store/upload-queue.store';
 
+	const query = createRoom({
+		onMutate: ({ file, tmpId }) => {
+			uploadQueue.enqueue({ name: file.name, tmpId });
+		},
+		onSuccess: async (data) => {
+			await invalidate('layout:rooms');
+			await tick();
+			uploadQueue.remove(data.tmpId);
+		}
+	});
 	let inputRef: HTMLInputElement;
-	let query = createRoom();
 
 	function handleSelectFile() {
 		inputRef.click();
@@ -16,12 +27,10 @@
 			return;
 		}
 
-		const first = files?.item(0)!;
-		$query.mutate(first, {
-			onSuccess() {
-				invalidate('layout:rooms');
-			}
-		});
+		const file = files?.item(0)!;
+		const tmpId = new Date().getTime().toString(10);
+
+		$query.mutate({ file, tmpId });
 	}
 </script>
 
