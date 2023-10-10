@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import Link from '$lib/components/link.svelte';
+	import type { RoomWithMessage } from '$lib/types/room';
 	import { formatDate } from '$lib/utils/format-date';
 	import { uploadQueue } from '../store/upload-queue.store';
 	import QueuedRoom from './queued-room.svelte';
 
-	$: rooms = $page.data.rooms;
+	export let rooms: RoomWithMessage[];
 </script>
 
 <ul class="flex flex-col">

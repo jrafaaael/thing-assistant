@@ -3,11 +3,13 @@
 	import { page } from '$app/stores';
 	import { onNavigate } from '$app/navigation';
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+	import type { LayoutData } from './$types';
 	import { sidebar } from '$lib/stores/show-sidebar.store';
 	import UploadFile from './layout/components/upload-file.svelte';
 	import RoomList from './layout/components/room-list.svelte';
 	import '../app.css';
 
+	export let data: LayoutData;
 	const queryClient = new QueryClient();
 	$: isIndex = $page.route.id === '/';
 
@@ -35,7 +37,7 @@
 				: 'sm:-translate-x-1/2'}"
 		>
 			<UploadFile />
-			<RoomList />
+			<RoomList rooms={data.rooms} />
 		</aside>
 		<main
 			class="bg-neutral-800 w-full sm:transition lg:w-full lg:transition-none lg:translate-x-0 {!isIndex
