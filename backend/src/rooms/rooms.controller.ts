@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   Param,
@@ -8,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { RoomsService } from './rooms.service';
+import { UploadedFileDto } from './dto/room-with-message.dto';
 
 @Controller('rooms')
 export class RoomsController {
@@ -25,12 +27,15 @@ export class RoomsController {
 
   @Post('ingest')
   @UseInterceptors(FileInterceptor('file'))
-  async ingest(@UploadedFile() file: Express.Multer.File) {
+  async ingest(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() uploadedFile: UploadedFileDto,
+  ) {
     const room = await this.roomsService.create({
       name: file.originalname,
     });
     await this.roomsService.generateEmbeddings(file, room.id);
 
-    return { msg: 'ok' };
+    return { msg: 'ok', tmpId: uploadedFile.tmpId };
   }
 }
