@@ -10,6 +10,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { RoomsService } from './rooms.service';
 import { UploadedFileDto } from './dto/room-with-message.dto';
+import { getCorrectEncoding } from 'src/utils/get-correct-encoding';
 
 @Controller('rooms')
 export class RoomsController {
@@ -32,7 +33,7 @@ export class RoomsController {
     @Body() uploadedFile: UploadedFileDto,
   ) {
     const room = await this.roomsService.create({
-      name: file.originalname,
+      name: getCorrectEncoding(file.originalname),
     });
     await this.roomsService.generateEmbeddings(file, room.id);
 
