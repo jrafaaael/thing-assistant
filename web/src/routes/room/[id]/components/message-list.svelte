@@ -8,6 +8,7 @@
 	import { sidebar } from '$lib/stores/show-sidebar.store';
 	import { getInfiniteMessageList } from '../libs/query/get-infinite-message-list';
 	import { socket } from '../libs/socket-io';
+	import MessageBubble from './message-bubble.svelte';
 
 	export let title: string;
 	let containerRef: HTMLDivElement;
@@ -78,27 +79,7 @@
 	<ul class="w-full max-w-3xl mx-auto mt-auto px-6 flex flex-col-reverse gap-6">
 		{#if $query.isSuccess}
 			{#each messages as message}
-				<li class="flex flex-col gap-1 {message.isFromAi ? 'items-start' : 'items-end'}">
-					<span class="font-bold text-neutral-400">{message.isFromAi ? 'Cohere' : 'You'}</span>
-					<div
-						class="max-w-[90%] py-2 px-4 rounded-3xl md:max-w-[70%] {message.isFromAi
-							? 'bg-blue-600 rounded-tl-[4px]'
-							: 'bg-neutral-700 rounded-tr-[4px]'}"
-					>
-						<span>{message.content}</span>
-						<time
-							class="ml-3 mt-[6px] text-xs inline-block float-right {!message.isFromAi
-								? 'text-white/70'
-								: ''}"
-							datetime={new Date(message.createdAt).toLocaleString()}
-							>{new Date(message.createdAt).toLocaleString(undefined, {
-								hour: '2-digit',
-								minute: '2-digit',
-								hour12: true
-							})}</time
-						>
-					</div>
-				</li>
+				<MessageBubble {...message} />
 			{/each}
 		{/if}
 	</ul>
