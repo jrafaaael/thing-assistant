@@ -23,8 +23,12 @@
 			</time>
 		</div>
 		<p class="text-sm text-neutral-400 line-clamp-1">
-			<span class="font-bold">{isFromAi ? 'Cohere' : 'You'}: </span>
-			<span>{lastMessageContent}</span>
+			{#if isFromAi === null || lastMessageContent === null}
+				<span>Start chating with your PDF!</span>
+			{:else}
+				<span class="font-bold">{isFromAi ? 'Cohere' : 'You'}: </span>
+				<span>{lastMessageContent}</span>
+			{/if}
 		</p>
 	</Link>
 </li>
