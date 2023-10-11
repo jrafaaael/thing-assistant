@@ -8,6 +8,10 @@
 		e.currentTarget.style.height = 'auto';
 		e.currentTarget.style.height = e.currentTarget.scrollHeight + 'px';
 	}
+
+	export function resetHeight() {
+		textAreaRef.style.height = 'auto';
+	}
 </script>
 
 <textarea

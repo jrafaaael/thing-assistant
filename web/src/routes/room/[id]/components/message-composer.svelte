@@ -7,6 +7,7 @@
 
 	let message = '';
 	let queryClient = useQueryClient();
+	let inputRef: Input;
 	$: id = $page.params.id;
 
 	function handleSendMessage() {
@@ -15,6 +16,8 @@
 		}
 
 		socket.emit('message.new', { content: message, roomId: id });
+
+		inputRef.resetHeight();
 
 		queryClient.invalidateQueries({
 			queryKey: ['rooms', id, 'messages']
@@ -31,6 +34,7 @@
 			id="message"
 			classNames="max-h-52 p-3 bg-neutral-700 rounded-2xl"
 			placeholder="Message"
+			bind:this={inputRef}
 			bind:value={message}
 		/>
 		<button class="p-3">
