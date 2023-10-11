@@ -79,7 +79,11 @@
 	<ul class="w-full max-w-3xl mx-auto mt-auto px-6 flex flex-col-reverse gap-6">
 		{#if $query.isSuccess}
 			{#each messages as message}
-				<MessageBubble {...message} />
+				<MessageBubble
+					content={message.content}
+					createdAt={message.createdAt}
+					isFromAi={message.isFromAi}
+				/>
 			{/each}
 		{/if}
 	</ul>
