@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 export function showSidebar() {
-	const { subscribe, update, set } = writable(true);
+	const { subscribe, update, set } = writable(false);
 
 	return {
 		subscribe,
