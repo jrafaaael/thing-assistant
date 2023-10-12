@@ -12,15 +12,17 @@
 	$: id = $page.params.id;
 
 	async function sendMessage() {
-		if (message.length <= 0) {
-			return;
-		}
-
-		socket.emit('message.new', { content: message, roomId: id });
+		const trimmedMessage = message.trim();
 
 		message = '';
 
 		inputRef.resetHeight();
+
+		if (trimmedMessage.length <= 0) {
+			return;
+		}
+
+		socket.emit('message.new', { content: trimmedMessage, roomId: id });
 
 		queryClient.invalidateQueries({
 			queryKey: ['rooms', id, 'messages']
