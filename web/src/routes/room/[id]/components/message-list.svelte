@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { afterUpdate, onMount } from 'svelte';
+	import { slide } from 'svelte/transition';
 	import { page } from '$app/stores';
-	import { afterNavigate } from '$app/navigation';
+	import { afterNavigate, invalidate } from '$app/navigation';
 	import { useQueryClient } from '@tanstack/svelte-query';
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
 	import Menu from '$lib/components/icons/menu.svelte';
@@ -17,6 +18,7 @@
 	$: id = $page.params.id;
 	$: query = getInfiniteMessageList(id);
 	$: messages = $query.data?.pages.flatMap((data) => data.messages) ?? [];
+	$: lastMessageIsFromAi = messages.at(0)?.isFromAi ?? true;
 
 	onMount(() => {
 		async function received() {
@@ -24,9 +26,7 @@
 				queryKey: ['rooms', id, 'messages']
 			});
 
-			queryClient.invalidateQueries({
-				queryKey: ['rooms']
-			});
+			await invalidate('layout:rooms');
 		}
 
 		socket.on('message.generated', received);
@@ -68,7 +68,16 @@
 					<Menu />
 				</div>
 			</button>
-			<h2 class="text-2xl font-bold">{title}</h2>
+			<div class="flex flex-col justify-center items-center">
+				<h2 class="text-2xl font-bold">{title}</h2>
+				{#if !lastMessageIsFromAi}
+					<span transition:slide class="text-sm"
+						>The
+						<span class="font-bold"> Assistant </span>
+						is generating your response</span
+					>
+				{/if}
+			</div>
 		</div>
 	</header>
 	<IntersectionObserver

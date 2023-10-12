@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { useQueryClient } from '@tanstack/svelte-query';
+	import { invalidate } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { useQueryClient } from '@tanstack/svelte-query';
 	import Input from '$lib/components/input.svelte';
 	import Send from '$lib/components/icons/send.svelte';
 	import { socket } from '../libs/socket-io';
@@ -10,7 +11,7 @@
 	let inputRef: Input;
 	$: id = $page.params.id;
 
-	function handleSendMessage() {
+	async function handleSendMessage() {
 		if (message.length <= 0) {
 			return;
 		}
@@ -22,6 +23,7 @@
 		queryClient.invalidateQueries({
 			queryKey: ['rooms', id, 'messages']
 		});
+		await invalidate('layout:rooms');
 
 		message = '';
 	}
