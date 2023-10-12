@@ -11,12 +11,14 @@
 	let inputRef: Input;
 	$: id = $page.params.id;
 
-	async function handleSendMessage() {
+	async function sendMessage() {
 		if (message.length <= 0) {
 			return;
 		}
 
 		socket.emit('message.new', { content: message, roomId: id });
+
+		message = '';
 
 		inputRef.resetHeight();
 
@@ -24,13 +26,18 @@
 			queryKey: ['rooms', id, 'messages']
 		});
 		await invalidate('layout:rooms');
+	}
 
-		message = '';
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Enter' && !e.shiftKey) {
+			e.preventDefault();
+			sendMessage();
+		}
 	}
 </script>
 
 <div class="w-full max-w-3xl mx-auto px-6 pb-6 pt-3">
-	<form class="w-full flex items-end gap-4" on:submit|preventDefault={handleSendMessage}>
+	<form class="w-full flex items-end gap-4" on:submit|preventDefault={sendMessage}>
 		<Input
 			name="message"
 			id="message"
@@ -38,6 +45,7 @@
 			placeholder="Message"
 			bind:this={inputRef}
 			bind:value={message}
+			on:keydown={handleKeydown}
 		/>
 		<button class="p-3">
 			<div class="h-6 aspect-square">

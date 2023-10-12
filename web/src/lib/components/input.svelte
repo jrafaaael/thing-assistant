@@ -20,5 +20,6 @@
 	bind:value
 	bind:this={textAreaRef}
 	on:input={handleInput}
+	on:keydown
 	{...$$restProps}
 />
