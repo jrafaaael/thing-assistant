@@ -34,23 +34,18 @@
 	}
 </script>
 
-<header
-	class="h-[70px] px-4 bg-neutral-900/50 border-b-2 border-x-4 border-transparent border-b-white/10 shrink-0 flex justify-between items-center gap-10 sticky top-0 backdrop-blur-[2px]"
+<button
+	class="p-1 px-2 bg-orange-hard rounded-md text-sm transition active:scale-[0.97]"
+	on:click={handleSelectFile}
 >
-	<h3 class="text-xl font-bold">Chats</h3>
-	<button
-		class="p-1 px-2 bg-orange-hard rounded-md text-sm transition active:scale-[0.97]"
-		on:click={handleSelectFile}
-	>
-		New chat
-	</button>
-	<input
-		type="file"
-		name="file"
-		id="file"
-		accept=".pdf"
-		class="sr-only"
-		bind:this={inputRef}
-		on:change={handleUploadFile}
-	/>
-</header>
+	New chat
+</button>
+<input
+	type="file"
+	name="file"
+	id="file"
+	accept=".pdf"
+	class="sr-only"
+	bind:this={inputRef}
+	on:change={handleUploadFile}
+/>
