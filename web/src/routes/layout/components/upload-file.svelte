@@ -35,7 +35,7 @@
 </script>
 
 <header
-	class="h-[70px] px-4 bg-neutral-900/50 border-b-2 border-x-4 border-transparent border-b-white/10 flex justify-between items-center gap-10 sticky top-0 backdrop-blur-[2px]"
+	class="h-[70px] px-4 bg-neutral-900/50 border-b-2 border-x-4 border-transparent border-b-white/10 shrink-0 flex justify-between items-center gap-10 sticky top-0 backdrop-blur-[2px]"
 >
 	<h3 class="text-xl font-bold">Chats</h3>
 	<button
