@@ -14,6 +14,7 @@
 <Dnd
 	bind:isDrag
 	bind:files
+	accept="application/pdf"
 	class="h-full m-6 my-10 p-6 border-[3px] border-dashed border-white/10 rounded-2xl"
 >
 	<div class="h-full flex flex-col justify-center items-center gap-4">

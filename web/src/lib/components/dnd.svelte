@@ -1,11 +1,12 @@
 <script lang="ts">
 	export let files: File[] = [];
 	export let isDrag = false;
+	export let accept: string | null = null;
 
 	function handleDrop(e: DragEvent & { currentTarget: EventTarget & HTMLDivElement }) {
 		isDrag = false;
 		const dt = e.dataTransfer!;
-		files = [...dt.files];
+		files = accept ? [...dt.files].filter(({ type }) => type === accept) : [...dt.files];
 
 		console.log(files);
 	}
