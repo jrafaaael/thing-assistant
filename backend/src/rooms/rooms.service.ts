@@ -38,7 +38,7 @@ export class RoomsService {
           group by "roomId"
         )
       ) m on r.id = m."roomId"
-      order by m."createdAt" desc, r."createdAt" desc;
+      order by "updatedAt" desc;
     `;
   }
 
