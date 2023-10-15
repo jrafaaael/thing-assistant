@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { RoomWithMessage } from '$lib/types/room';
+	import { page } from '$app/stores';
 	import { uploadQueue } from '../store/upload-queue.store';
+	import type { LayoutData } from '../../$types';
 	import QueuedRoom from './queued-room.svelte';
 	import Room from './room.svelte';
 	import RoomListEmpty from './room-list-empty.svelte';
 
-	export let rooms: RoomWithMessage[];
+	$: data = $page.data as LayoutData;
 </script>
 
 {#if data.rooms.length > 0 || $uploadQueue.length > 0}
