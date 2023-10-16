@@ -11,7 +11,7 @@
 
 <li>
 	<Link
-		class="p-4 border-b-2 border-x-4 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-neutral-800 [&.active]:bg-neutral-800 [&.active]:border-l-orange-hard"
+		class="p-3 px-4 border-x-[3px] border-y-2 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-neutral-800 [&.active]:bg-neutral-800 [&.active]:border-l-orange-hard"
 		href="/room/{id}"
 	>
 		<div class="flex justify-between items-end gap-12">
