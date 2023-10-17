@@ -13,7 +13,7 @@
 </script>
 
 <li
-	class="p-3 px-4 border-x-[3px] border-y-2 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-neutral-800 [&.active]:bg-neutral-800 [&.active]:border-l-orange-hard"
+	class="p-3 px-4 border-x-[3px] border-y-2 border-transparent border-b-white/10 flex flex-col gap-1 hover:bg-neutral-800"
 >
 	<div class="flex justify-between items-end gap-12">
 		<div class="flex items-center gap-3 flex-1">
