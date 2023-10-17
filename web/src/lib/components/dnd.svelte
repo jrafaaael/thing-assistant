@@ -18,6 +18,7 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	on:dragenter|preventDefault|stopPropagation={() => (isDrag = true)}
 	on:dragover|preventDefault|stopPropagation={() => (isDrag = true)}
