@@ -1,28 +1,16 @@
 <script lang="ts">
-	import { tick } from 'svelte';
 	import { page } from '$app/stores';
-	import { invalidate } from '$app/navigation';
 	import Dnd from '$lib/components/dnd.svelte';
-	import { uploadQueue } from '../store/upload-queue.store';
 	import type { LayoutData } from '../../$types';
+	import { uploadQueue } from '../store/upload-queue.store';
+	import { createRoom } from '../libs/query/create-room';
 	import QueuedRoom from './queued-room.svelte';
 	import Room from './room.svelte';
 	import RoomListEmpty from './room-list-empty.svelte';
-	import { createRoom } from '../libs/query/create-room';
 
+	const query = createRoom();
 	let files: File[] = [];
 	let isDrag: boolean;
-
-	const query = createRoom({
-		onMutate: ({ file, tmpId }) => {
-			uploadQueue.enqueue({ name: file.name, tmpId });
-		},
-		onSuccess: async (data) => {
-			await invalidate('layout:rooms');
-			await tick();
-			uploadQueue.remove(data.tmpId);
-		}
-	});
 
 	$: data = $page.data as LayoutData;
 
