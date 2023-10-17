@@ -1,5 +1,5 @@
-import { PUBLIC_API_URL } from '$env/static/public';
 import { createInfiniteQuery } from '@tanstack/svelte-query';
+import { ky } from '$lib/libs/ky';
 
 export interface Message {
 	id: string;
@@ -25,10 +25,9 @@ async function getMessages({
 	roomId,
 	cursor = -1
 }: GetMessageListParams): Promise<InfiniteMessageListResponse> {
-	const res = await fetch(`${PUBLIC_API_URL}/rooms/${roomId}/messages?cursor=${cursor}`);
-	const data = await res.json();
-
-	return data;
+	return (await ky
+		.get(`rooms/${roomId}/messages?cursor=${cursor}`)
+		.json()) as InfiniteMessageListResponse;
 }
 
 export function getInfiniteMessageList(roomId: string) {
