@@ -29,15 +29,21 @@ git clone git@github.com:jrafaaael/thing-assistant.git
 cd thing-assistant/
 ```
 
-#### Server
+#### Backend and web
 
 1. Create `.env` file and populate with correct values
 
 ```bash
-cp backend/.env.example backend/.env
+cp backend/.env.example backend/.env && cp web/.env.example web/.env
 ```
 
-2. Run containers
+2. Run database migrations
+
+```bash
+docker compose exec backend npx prisma migrate dev
+```
+
+3. Run containers
 
 ```bash
 docker compose up
