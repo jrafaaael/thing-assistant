@@ -11,7 +11,7 @@
 	let inputRef: Input;
 	$: id = $page.params.id;
 
-	async function sendMessage() {
+	function sendMessage() {
 		const trimmedMessage = message.trim();
 
 		message = '';
@@ -22,12 +22,12 @@
 			return;
 		}
 
-		socket.emit('message.new', { content: trimmedMessage, roomId: id });
-
-		queryClient.invalidateQueries({
-			queryKey: ['rooms', id, 'messages']
+		socket.emit('message.new', { content: trimmedMessage, roomId: id }, async () => {
+			queryClient.invalidateQueries({
+				queryKey: ['rooms', id, 'messages']
+			});
+			await invalidate('layout:rooms');
 		});
-		await invalidate('layout:rooms');
 	}
 
 	function handleKeydown(e: KeyboardEvent) {
