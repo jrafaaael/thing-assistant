@@ -1,5 +1,5 @@
 services:
-  db:
+  thing-assistant-postgres:
     image: ankane/pgvector:v0.4.4
     container_name: thing-assistant-postgres
     restart: unless-stopped
@@ -12,24 +12,23 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
-  backend:
-    image: nest-backend
+  thing-assistant-backend:
     container_name: thing-assistant-backend
     restart: unless-stopped
     command: ["yarn", "run", "start:dev"]
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - COHERE_API_KEY=${COHERE_API_KEY}
     depends_on:
-      - db
+      - thing-assistant-postgres
     build:
       context: ../backend
       dockerfile: Dockerfile
-    volumes:
-      - ./backend:/usr/src/app
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - COHERE_API_KEY=${COHERE_API_KEY}
     ports:
       - 3000:3000
       - 8000:8000
+    volumes:
+      - ../backend:/usr/src/app
 
 volumes:
   db:
