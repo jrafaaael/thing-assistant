@@ -31,16 +31,16 @@ cd thing-assistant/
 
 #### Server
 
-1. Create `.env` file and populate with correct values
+1. Create `.env` file and provide values for the required variable `COHERE_API_KEY`. Consider changing `DATABASE_PASSWORD` to something randomly generated
 
 ```bash
-cp backend/.env.example backend/.env
+cp docker/.env.example docker/.env
 ```
 
-2. Run containers
+2. Run container
 
 ```bash
-docker compose up
+make dev
 ```
 
 #### Mobile
