@@ -31,23 +31,24 @@ cd thing-assistant/
 
 #### Backend and web
 
-1. Create `.env` file and populate with correct values
+1. Create `.env` file and provide values for the required variable `COHERE_API_KEY`. Consider changing `DATABASE_PASSWORD` to something randomly generated
 
 ```bash
-cp backend/.env.example backend/.env && cp web/.env.example web/.env
+cp docker/.env.example docker/.env
 ```
 
-2. Run database migrations
+2. Run container
 
 ```bash
-docker compose exec backend npx prisma migrate dev
+make dev
 ```
 
-3. Run containers
-
-```bash
-docker compose up
-```
+> [!IMPORTANT]
+> The first time you run the container, you must perform database migrations. To do so, start the container (see previous step) and, in another terminal, run:
+>
+> ```bash
+> docker compose -f docker/docker-compose.yaml exec thing-assistant-backend npx prisma migrate deploy
+> ```
 
 #### Mobile
 
