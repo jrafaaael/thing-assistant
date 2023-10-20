@@ -24,6 +24,7 @@ services:
     environment:
       - DATABASE_URL=${DATABASE_URL}
       - COHERE_API_KEY=${COHERE_API_KEY}
+      - WEB_URL=${WEB_URL:-*}
     ports:
       - 3000:3000
       - 8000:8000
