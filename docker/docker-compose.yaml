@@ -30,20 +30,22 @@ services:
     volumes:
       - ../backend:/usr/src/app
 
-  web:
-    image: sveltekit-web
+  thing-assistant-web:
     container_name: thing-assistant-web
-    depends_on:
-      - backend
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    command: ["yarn", "run", "dev", "--host", "--port", "5000"]
-    volumes:
-      - ./web:/usr/src/app
-    ports:
-      - "5000:5000"
     restart: unless-stopped
+    command: ["yarn", "run", "dev", "--host", "--port", "5000"]
+    depends_on:
+      - thing-assistant-backend
+    build:
+      context: ../web
+      dockerfile: Dockerfile
+    environment:
+      - PUBLIC_API_URL=http://localhost:3000
+      - PUBLIC_SOCKET_URL=http://localhost:8000
+    ports:
+      - 5000:5000
+    volumes:
+      - ../web:/usr/src/app
 
 volumes:
   db:
