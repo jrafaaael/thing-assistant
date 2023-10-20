@@ -47,7 +47,7 @@ make dev
 > The first time you run the container, you must perform database migrations. To do so, start the container (see previous step) and, in another terminal, run:
 >
 > ```bash
-> docker compose exec thing-assistant-backend npx prisma migrate deploy
+> docker compose -f docker/docker-compose.yaml exec thing-assistant-backend npx prisma migrate deploy
 > ```
 
 #### Mobile
