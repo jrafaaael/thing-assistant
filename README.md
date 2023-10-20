@@ -31,7 +31,7 @@ cd thing-assistant/
 
 #### Backend and web
 
-1. Create `.env` file and provide values for the required variable `COHERE_API_KEY`. Consider changing `DATABASE_PASSWORD` to something randomly generated
+1. Create `.env` file and provide value for the required variable `COHERE_API_KEY`. Consider changing `DATABASE_PASSWORD` to something randomly generated
 
 ```bash
 cp docker/.env.example docker/.env
