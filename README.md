@@ -31,13 +31,16 @@ cd thing-assistant/
 
 #### Backend and web
 
-1. Create `.env` file and provide value for the required variable `COHERE_API_KEY`. Consider changing `DATABASE_PASSWORD` to something randomly generated
+1. Create `.env` file and:
+- Provide value for the required `COHERE_API_KEY` variable
+- Consider changing `DATABASE_PASSWORD` variable to something randomly generated
+- If you want to access the webapp in a remote device (e.g mobile browser), set `BACKEND_IP` equals to your machine ip
 
 ```bash
 cp docker/.env.example docker/.env
 ```
 
-2. Run container
+2. From root dir, run
 
 ```bash
 make dev
