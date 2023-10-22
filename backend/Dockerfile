@@ -9,5 +9,3 @@ RUN yarn install
 COPY --chown=node:node . .
 
 RUN npx prisma generate
-
-USER node
