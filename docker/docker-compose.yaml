@@ -30,7 +30,6 @@ services:
       - 8000:8000
     volumes:
       - ../backend:/usr/src/app
-      - /usr/src/app/node_modules
 
   thing-assistant-web:
     container_name: thing-assistant-web
@@ -48,7 +47,6 @@ services:
       - 5000:5000
     volumes:
       - ../web:/usr/src/app
-      - /usr/src/app/node_modules
 
 volumes:
   db:
