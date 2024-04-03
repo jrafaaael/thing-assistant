@@ -38,8 +38,16 @@ export class RoomsService {
           group by "roomId"
         )
       ) m on r.id = m."roomId"
-      order by m."createdAt" desc, r."createdAt" desc;
+      order by "updatedAt" desc;
     `;
+  }
+
+  async getRoomById(id: string) {
+    const castedId = Number(id);
+
+    return await this.prismaService.room.findUnique({
+      where: { id: castedId },
+    });
   }
 
   async create(data: Prisma.RoomCreateInput) {

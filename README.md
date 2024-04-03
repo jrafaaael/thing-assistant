@@ -29,22 +29,32 @@ git clone git@github.com:jrafaaael/thing-assistant.git
 cd thing-assistant/
 ```
 
-#### Server
+#### Backend and web
 
-1. Create `.env` file and provide values for the required variable `COHERE_API_KEY`. Consider changing `DATABASE_PASSWORD` to something randomly generated
+1. Create `.env` file and:
+
+- Provide value for the required `COHERE_API_KEY` variable
+- Consider changing `DATABASE_PASSWORD` variable to something randomly generated
+- If you want to access the webapp in a remote device (e.g mobile browser), set `BACKEND_IP` equals to your machine ip
 
 ```bash
 cp docker/.env.example docker/.env
 ```
 
-2. Run container
+2. Install dependencies in host
+
+```bash
+make install
+```
+
+3. From root dir, run containers
 
 ```bash
 make dev
 ```
 
 > [!IMPORTANT]
-> The first time you run the container, you must perform database migrations. To do so, start the container (see previous step) and, in another terminal, run:
+> The first time you run the containers, you must perform database migrations. To do so, start the containers (see previous step) and, in another terminal, run:
 >
 > ```bash
 > docker compose -f docker/docker-compose.yaml exec thing-assistant-backend npx prisma migrate deploy

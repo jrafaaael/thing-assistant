@@ -1,0 +1,33 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'Inter';
+		src: url('/fonts/Inter-Regular.ttf');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Inter';
+		src: url('/fonts/Inter-Bold.ttf');
+		font-weight: bold;
+		font-style: normal;
+	}
+
+	* {
+		@apply [&]:[color-scheme:dark];
+	}
+
+	html,
+	body {
+		@apply h-screen overflow-hidden;
+	}
+
+	body {
+		@apply bg-neutral-800 text-neutral-50;
+	}
+}

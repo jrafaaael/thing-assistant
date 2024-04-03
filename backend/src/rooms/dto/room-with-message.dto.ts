@@ -5,3 +5,7 @@ export class RoomWithMessageDto {
   isFromAi: boolean;
   lastMessageContent: string | null;
 }
+
+export class UploadedFileDto {
+  tmpId: string;
+}
